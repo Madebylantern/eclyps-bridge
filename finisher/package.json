@@ -1,0 +1,32 @@
+{
+  "name": "@eclyps/finisher",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Permissionless finisher: closes epochs, sends batches over CCTP, relays to Ethereum, registers roots on Aztec",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "local": "tsx src/main.ts",
+    "testnet": "tsx src/testnet.ts --testnet",
+    "mainnet": "tsx src/testnet.ts --mainnet",
+    "start": "tsx src/testnet.ts",
+    "keeper": "tsx src/keeper.ts",
+    "new-keys": "tsx scripts/new-keys.ts"
+  },
+  "dependencies": {
+    "@aztec-labs/accounts": "6.0.0-rc.3",
+    "@aztec-labs/aztec.js": "6.0.0-rc.3",
+    "@aztec-labs/noir-contracts.js": "6.0.0-rc.3",
+    "@aztec-labs/stdlib": "6.0.0-rc.3",
+    "@aztec-labs/wallets": "6.0.0-rc.3",
+    "@eclyps/sdk": "workspace:*",
+    "@solana/kit": "8.4.0",
+    "viem": "2.57.4"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "inputMint": "So11111111111111111111111111111111111111112",
+  "inAmount": "12132646728",
+  "outputMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "outAmount": "1310000000",
+  "otherAmountThreshold": "12193309962",
+  "swapMode": "ExactOut",
+  "slippageBps": 50,
+  "platformFee": null,
+  "priceImpactPct": "0.0002530106753654709994706422",
+  "routePlan": [
+    {
+      "swapInfo": {
+        "ammKey": "DJNtGuBGEQiUCWE8F981M2C3ZghZt2XLD8f2sQdZ6rsZ",
+        "label": "PancakeSwap",
+        "inputMint": "So11111111111111111111111111111111111111112",
+        "outputMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "inAmount": "7279430477",
+        "outAmount": "786000000",
+        "updateContextSlot": "456331898"
+      },
+      "percent": 60,
+      "bps": null
+    },
+    {
+      "swapInfo": {
+        "ammKey": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN",
+        "label": "PancakeSwap",
+        "inputMint": "So11111111111111111111111111111111111111112",
+        "outputMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "inAmount": "4853216251",
+        "outAmount": "524000000",
+        "updateContextSlot": "456331740"
+      },
+      "percent": 40,
+      "bps": null
+    }
+  ],
+  "contextSlot": 456331916,
+  "timeTaken": 0.00229612,
+  "swapUsdValue": "1310.0690452014817346480088",
+  "mostReliableAmmsQuoteReport": {
+    "info": {
+      "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU": "1311627294",
+      "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE": "12134503909"
+    }
+  },
+  "longtailMarketQuoteReport": null,
+  "useIncurredSlippageForQuoting": null,
+  "useRewards": null,
+  "otherRoutePlans": null,
+  "loadedLongtailToken": false,
+  "instructionVersion": null,
+  "transactionVersion": 0
+}

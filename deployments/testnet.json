@@ -1,0 +1,826 @@
+{
+  "network": "testnet",
+  "solana": {
+    "rpc": "https://api.devnet.solana.com",
+    "gateway": "4GG6NHxUSSDbVoXZu9BbVVRTG5gYuKqjkhNw3DVoB1jf",
+    "usdcMint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+    "config": "Es7rPFgvqsQEioXWPJXAH5Tu4mc7ab2dumqXRomhAzcE",
+    "admin": "94dMzgwBnPadtdHtqo48dqZqoXRTCm9bUw8AW4jeV72N",
+    "deploySig": "2M25iEZSpeqyXmD1zLwK62SFSgrYTetwxH6kg9QNGjb2BfhpzAfvcALy3cjgWunW73P9xzK6iBNXQU7yKVGQwrJB",
+    "treasury": "9v1UKPUdLv3nKrmSzYzrfjUDLAyZJt5r1gJDrUVmvcLv",
+    "initializeSig": "27ru4QsjHmtTBporA6YjFF2wnwArBQQNgJziEeYn3RdqNrbKmnJ4y7NpxwG4EaoMKEJH3833abAsTggfF9o5beC8"
+  },
+  "l1": {
+    "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+    "chainId": 11155111,
+    "deployer": "0xd69e9B8bAb43EdbF1D96AF4C71BB385711742241",
+    "portal": "0x3a81e7e7721196a1e7e80f2f0c087c35d7d890a6",
+    "bindTxs": {
+      "1000000": "0xa212d5eaa21c19bca0565ae5cd2d46496dcea479ab94e8e1929da74f8936b67c",
+      "10000000": "0x245d1fc895537af46a1cb26299fade27cdead48c8d907d1437a1faa8ad42e2fc"
+    },
+    "deployTx": "0x73953569c90d38f1ec93723d668e806ab8e90eb86df39070ed22300a487d3573"
+  },
+  "aztec": {
+    "node": "https://aztec-testnet.drpc.org",
+    "version": "6.0.0-rc.3",
+    "rollupVersion": 3409706519,
+    "sponsoredFpc": "0x2adfb70e860909f0db8268b3fec80bce52a94559963444f5c0341816b8412130",
+    "admin": "0x1bb77838f34cb8e327870443e590cef029dcc176e36e0d0086fb6db92131b6e7",
+    "token": "0x1a0bde5cd57a7f6f48f2ef4a0175cf6ec0359e08140b9e79bce6b6a1edf0aec9",
+    "claims": {
+      "1000000": "0x0d548407c73e4560778f6cf2b4056dc3d6785c64b391bc81df4fc02900370f7a",
+      "10000000": "0x00b4a7112416fc9065592af196ed4a24ae3f0dc6ea0890962c277942d57e27ab"
+    },
+    "claimDeployTxs": {
+      "1000000": "0x2772c8d3bc5b0cae4376e332cb17c8ea7e2adf83a1580cf83e0b54952a29e1a2",
+      "10000000": "0x072a8d035ccaad60a7aab737a83aa9d2cbad9573b49b317851acce59beb3da38"
+    },
+    "minter": "0x159dde34df564b98b036b1da861c03bcb58f50215e193ec73614bfcf4cffc534",
+    "minterDeployTx": "0x1e98c7fc5f9c171b4dadb7792efc7f839e915a5ed1710dadee1645d26c2b0256",
+    "tokenDeployTx": "0x0dc0c52fd0b01bd7fde36c287a3e2ee21a2aeceb9c3e10df71e1b0b90ec5dae2",
+    "wireTx": "0x19f222eb3d095ff83a4efe66709c09f158c66212700a0df19f3987be6f8a81c7"
+  },
+  "denominations": [
+    "1000000",
+    "10000000"
+  ],
+  "params": {
+    "minBatchSize": 4,
+    "perEpochCap": 4,
+    "epochLenSlots": 2250,
+    "feeBps": 50,
+    "finisherBps": 30,
+    "depositCap": "1000000000"
+  },
+  "features": {
+    "exit": true,
+    "exitEthereum": true
+  },
+  "totality": {
+    "weekday": 0,
+    "hourUtc": 20,
+    "minutes": 60,
+    "first": "2026-10-18T20:00:00Z"
+  },
+  "runs": [
+    {
+      "denomination": "1000000",
+      "epochId": "0",
+      "notes": 4,
+      "deposits": [
+        "U8NkaiA34itnHrf23e8mihtruumbg9dBi8Y6ZzVPbrf25fYxkZPzea1zRUHKET2V53ZbGzwdYVi6sxoAKr6Ruuz",
+        "5MNZTF52xANEURFJnpHc5sBVUQsQ2SGjmvvsiWkDfiyWHMk9yJr7ShcNfeiKu46aX7SPn2rgwKsdhKN241zcoFVw",
+        "5M27oXgtzxEu4rvqpHL1MLvhMNYk62qzfr7ajo4mUySgLrX2VuqXdTtu3XXbB5iGZGQRjk4uNPVcYhMf79q5Fw5W",
+        "3CAAxoAmXoMHeoezthwJjuP72TW9HMvazL77kiG8GzjT5iYe87ij3CbKXg6RUWmAGFD1yysxLUGohW93GxA6ELUC"
+      ],
+      "timings": {
+        "start": 1792480574118,
+        "deposited": 1792480582136,
+        "burned": 1792480591473,
+        "attested": 1792480607820,
+        "relayed": 1792480634676,
+        "l1ToL2Ready": 1792480639448,
+        "registered": 1792480666367,
+        "claimed": 1792480713976
+      },
+      "closeSig": "3eiFuz2k97FZaBkV1kjQMgyzj5gtD34RG4mLdCyhSgLTjamhQ8NMhS3RdhzLTvnEqkwQSmzxX2EmAm5CjJRBwmVh",
+      "root": "0x0604227fba63232b066a0298f5e24927f51a7cae4a3ee645ef599e6b23348bce",
+      "leafCount": 4,
+      "burnSig": "51GbibCAwrVuK44izX37yQN9XkcHmPKmqAZ9kqfQzvkg9RyfV3bMT8QmJBidQMDZSWL7yJwPjqzfXZwVJYebAPzV",
+      "messageSent": "8rohiY5GFNq8gGXTVSzHZ6hh8B4wh36ZLTKKA83yu64C",
+      "relayTx": "0x7fc0259a5b502a39ddfaa1d39a983c8570f60a222b5d6bc3a4c1d463b5483f70",
+      "relayGas": "746086",
+      "cctpNonce": "0x4adec1aa00e8e48f256df7a75cefc47dcc3632bcd8f9d8cabfade2d8d4ea0537",
+      "l1ToL2Hash": "0x00b63a337ac82227f1612ea758e41aaeba53e4623e44670fd85c5fc1aa173e84",
+      "l1ToL2Index": "127",
+      "registerTx": "0x0f2455410a240905391fafb3610a620a4258353273396c0becc4a523c442dce5",
+      "claimTx": "0x27d1822f779f1eab54ce3332db7fa92dd761ce4db8a36f9c49166bdc2ff3cb5d",
+      "claimedNote": 2,
+      "checks": {
+        "recipient private balance == one note": true,
+        "recipient public balance == 0": true,
+        "recipient absent from the Sepolia relay calldata": true,
+        "recipient absent from the claim's public effects": true,
+        "second claim of the same note refused": true
+      }
+    },
+    {
+      "denomination": "1000000",
+      "epochId": "1",
+      "notes": 3,
+      "deposits": [
+        "2xaT21xSd5LjsH4hJZjJB2e9kmV4rT1uAYu7UwMn8hNix6vyqbG2mycEnRyV3fTv9zmojoHtAw8v6bK9emVukQbV",
+        "5qz4myCurnvLq8FNoQRJ4z2hpBW8Ybi4wQ2db2JsLRz7xg9tX2MLjeJkWBJMysUzvB43gLT2sLo79srGHAk7kush",
+        "qRfbkPnauVMSqvrrMkxHKApRoTKCQhcC7Ceiei2SMkSDSSx3iPNy4JQcmRh2hKdfsjJcEAy8o3UoMGhviq76hLx"
+      ],
+      "timings": {
+        "start": 1792482184835,
+        "deposited": 1792482188832,
+        "burned": 1792482317070,
+        "attested": 1792482333218,
+        "relayed": 1792482338090,
+        "l1ToL2Ready": 1792482344067,
+        "registered": 1792482364459
+      },
+      "closeSig": "2vwN1kfkeDmFv1s9ZTQtBhgGQKQn1fSxVAVoDygzV6TYqg4BWJ8buJoopXDNrTdagghpMpyB7X6Xx4ANu1N8Qrqc",
+      "root": "0x142b01f7ae4bc0c705cb6271250b566ff05f3723cbdbcda4b4cd405346dae90b",
+      "leafCount": 4,
+      "burnSig": "5FwjtKjTCesxYyKfgJkat1W6P86UrC6VZP9eBqdRb5QwSaMC2iYjwHGb6s6qUfZ6oBPxWSsbcLgLASVrxth2ywFx",
+      "messageSent": "Ez9uaRW2t6xRLZHR13aaHkpH4JByFBEZcS7gzezVohJ4",
+      "relayTx": "0x25a3a5db142cd93118100795ec03c28563fb510ac53cfaa022c9d143323becad",
+      "relayGas": "648207",
+      "cctpNonce": "0x1a9661e721a20afd34b6abfeca88ea1c94f7f2ba6ebdb13613fb766dc1a92c74",
+      "l1ToL2Hash": "0x000e4a5fb62fed890e6fb0899ac1175f98d07a861ce327657d5d2ee6cc24c7ec",
+      "l1ToL2Index": "128",
+      "registerTx": "0x1de50c91d4a8b760a0ec356ada6d3e4bc7d958daf7c5784c13a61158c50567c1",
+      "ui": {
+        "app": "https://eclyps-six.vercel.app/app/",
+        "timings": {
+          "start": 1792482151522,
+          "deposited": 1792482176326,
+          "filled": 1792482189140,
+          "registered": 1792482364865,
+          "arrivedInPage": 1792482370714,
+          "claimed": 1792482472045,
+          "burned": 1792482616138,
+          "provenInPage": 1792483218273,
+          "claimedOnEthereum": 1792483225816
+        },
+        "checks": {
+          "the fresh Ethereum address holds exactly $1 of Sepolia USDC": true
+        },
+        "failures": [],
+        "exitToEthereum": {
+          "recipient": "0xCf4CC2E32e3eB7C620418426d5fF05488AaE8826",
+          "burnRefs": [
+            "0x20b8c92236c80f555c067409fe3771730587af24958e1f29f5681eb27f11046f"
+          ],
+          "claimTx": "0x846992b56cfb09930807d1e672d696185ce22dfe8221a24f878121cbe44eb6d4",
+          "refs": [
+            "0x846992b56cfb09930807d1e672d696185ce22dfe8221a24f878121cbe44eb6d4"
+          ]
+        },
+        "depositSig": "5psoLtRRM4CK4LLDenPDXj7MXUZB89VoK2LdBqqgoyL1FrPsb5ah3S7xcTuDmkKwL4bMnjHSH9P4pfukRyDeN1kw",
+        "claimTx": "0x0f39bc624c8f0f84e0856ea03d727ae1777baa4084cd3d689cfe84d405f5c98c"
+      }
+    }
+  ],
+  "previous": [
+    {
+      "until": "2026-10-20",
+      "note": "ADR 0020: the example token and the gateway 3ZyKvDEk…EYbm, replaced by AIP-20 behind EclypsMinter and a new gateway",
+      "network": "testnet",
+      "solana": {
+        "rpc": "https://api.devnet.solana.com",
+        "gateway": "3ZyKvDEkUmY9BSTFFJ7u4ZkP7NDbog4gvvjec6ACEYbm",
+        "usdcMint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+        "config": "xLk8iAd4HuY2peRvtbLBTvSxmvYqEpTbi86qpRuCp3R",
+        "deploySig": "3eMwSKe9snQksPmM192RhSeNfSMABkMDrmXBuzSPK6nGwvbr7vXb3vLXdrsCiK7qPby9L49g7ZLHELERZ21dg1sN",
+        "admin": "94dMzgwBnPadtdHtqo48dqZqoXRTCm9bUw8AW4jeV72N",
+        "treasury": "9v1UKPUdLv3nKrmSzYzrfjUDLAyZJt5r1gJDrUVmvcLv",
+        "initializeSig": "48rkGX82QDSrzPxMGemCYznvmAtpp49sAV869eYqeXjVnThTNPhzAWWrCcV7sw8jsmZGNVdNcYJZZf361vg2JbJ7",
+        "exitLookupTable": "7yBFrrNQYBgHEbC79rfwHhMokqKNpN81gg8pgfnbjTFu",
+        "exitLookupTableSig": "5Zbh7ygYmfEYu1otaZzHynvZHBZBiLeWBoSEsq29dPMZRmXjgvt3fQpAgiZeHpWR6nQA9jwXu1QF32XgmU1xmMrE",
+        "exitLookupTableCost": "3865800"
+      },
+      "l1": {
+        "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+        "chainId": 11155111,
+        "portal": "0x944acd4abf8b7f27b4717f6b55f0f84833804618",
+        "bindTxs": {
+          "1000000": "0x06c273aff7e265d3c7293cca2cf19e443800141a38d28fdd196511a158f9ac6d",
+          "10000000": "0xf43686309606640bb985c678acd7d1237e1bd1546df312c36b08587d63bbc05e"
+        },
+        "deployer": "0xd69e9B8bAb43EdbF1D96AF4C71BB385711742241",
+        "deployTx": "0x14ee9c70b2adc758fda12c4c5aba75d3daa17d30ba1c573c18ea6e4fe927a1af"
+      },
+      "aztec": {
+        "node": "https://aztec-testnet.drpc.org",
+        "token": "0x210f0a5055f6fec6bf62305defda0438c670e95607ccd0e9eb60ee7ea4624535",
+        "claims": {
+          "1000000": "0x2de508174ae7ae25f2660aee9d0e0a7a36bde1ae083cf89d09d53d92a7781332",
+          "10000000": "0x2e6b50c36dec6fef70958b2551ffaeba1f8a3201dc844ac5e15c3a706bbfdcb5"
+        },
+        "claimDeployTxs": {
+          "1000000": "0x09c4ac20cd766877ef5eb14ee27f14ee332368f2bb3974d61d62dabc6d87f966",
+          "10000000": "0x1b76e9a750166496c7c909ffb79b956e3cc109dd7375eec180e6fc0389fbe59c"
+        },
+        "version": "6.0.0-rc.3",
+        "rollupVersion": 3409706519,
+        "sponsoredFpc": "0x2adfb70e860909f0db8268b3fec80bce52a94559963444f5c0341816b8412130",
+        "minterTxs": {
+          "1000000": "0x01ceae9907afc4571b312c544c26e2f08ce587822762c234096d3a450be0760a",
+          "10000000": "0x24d6b2f870fccfdc4ee3988f1aae29ebe3cab66b82dcd155bb418250e007c8b0"
+        },
+        "admin": "0x1bb77838f34cb8e327870443e590cef029dcc176e36e0d0086fb6db92131b6e7",
+        "tokenDeployTx": "0x1f506ed4fa58bf26e180e4936b184e0ae3576bdac1cac55f5c644e81fb398968"
+      },
+      "denominations": [
+        "1000000",
+        "10000000"
+      ],
+      "params": {
+        "minBatchSize": 4,
+        "perEpochCap": 4,
+        "epochLenSlots": 2250,
+        "feeBps": 50,
+        "finisherBps": 30,
+        "depositCap": "1000000000"
+      },
+      "runs": [
+        {
+          "denomination": "1000000",
+          "epochId": "0",
+          "notes": 4,
+          "deposits": [
+            "3wC85FjLry8ZX3dkwEEgFfvswuCE42UMsLUj5nuAtQSMyago8k3vj4qatUatNbSbNaxF9T1Z5jPpGM9LN1E8CFQD",
+            "4ZkxfZmQD5Q6xofqhhHQyJ9pcwsE8RdefYsQ2Ru2TBSa2mT1QEsB7GLww9rEv9Ci5Wdz4ioVy91GVkrxUeEQ6Gpr",
+            "3fEFsntLwR1yR4QVuvo3iXcVY1uitfLjP1kCLBjuX7bDg4F6CAUcvbwpsdYfYjRBPCU7DYovkjDTCwujzV4TEZLx",
+            "5yTREY9VZMaAH4DRQ4BFKA4VNFMCknfcPpJm2bipebs9mpUKFpnakjmfuznaxAxDGnzkFdS1zhbXTBPUPjQW58jt"
+          ],
+          "timings": {
+            "start": 1792125096440,
+            "deposited": 1792125122764,
+            "burned": 1792125139456,
+            "attested": 1792125145368,
+            "relayed": 1792125180736,
+            "l1ToL2Ready": 1792125194087,
+            "registered": 1792125215805,
+            "claimed": 1792125315581
+          },
+          "closeSig": "apcQoMcmKV2jHaEqT7VM8LPtJXGqsvtJRWpHkqQ2zJaYdsWrii5Dh56hBNL6km5ew3gnJeXwyhvDkrceT4nZ5kJ",
+          "root": "0x2fe5b6eed3acc9075e39189e1edb40cfb2473d8aa20137134d4803567189b4d7",
+          "leafCount": 4,
+          "burnSig": "4EJ5v7UvYag784FQKv5fewi6dHBWqpefW66F9Z7NPGFE6PHwRNMy25fDL6AojqgSpFoFYachi6w72ERkZnHFBtd4",
+          "messageSent": "U6f42ZNwALK7Hw7BYmD15Wb5aYeuMfYXcC57VhZLJ6Y",
+          "relayTx": "0x4a51dcb80046f52ee5f1d74b5e3b7bc36e5d5ea22504a02dc39b97dee1e50c8f",
+          "relayGas": "746127",
+          "cctpNonce": "0x14c90be477cb8f80670a190d84f3c9a52fb6e0f266509fe17a448bdad67d6663",
+          "l1ToL2Hash": "0x00fb59afd7bec30a580b1a0b374d31cd2beab33f0f2d2d38c22727a6152fa682",
+          "l1ToL2Index": "89",
+          "registerTx": "0x08afd92464fec684068301294b8e89a34a25d6809b6b6439029411a0a191e6b0",
+          "claimTx": "0x2957047474f7e0f9a50db255ac7f7aebaf3a32dc3300081fb86d63d92c7388b7",
+          "claimedNote": 2,
+          "checks": {
+            "recipient private balance == one note": true,
+            "recipient public balance == 0": true,
+            "recipient absent from the Sepolia relay calldata": true,
+            "recipient absent from the claim's public effects": true,
+            "second claim of the same note refused": true
+          }
+        },
+        {
+          "denomination": "1000000",
+          "epochId": "1",
+          "notes": 4,
+          "deposits": [
+            "5wycuR9RnXGaKoNSJrk3Zmg95W9nmKczZw4V9kNeUnjodrwxniakiM2EZSjxyfx7bLSiQ1N2Bs6qoHkbmwQW3xBD",
+            "5YV5YJSVgtzwFSYpWzm5baqXyp2QRa1KsqufCz3GdtoSijixm6cNAmL6Kepeey3HCNLWo8AES3t7ZGjZBqpESEcf",
+            "392tDgZxffeSdNcFMs675gLLtvgzLDawM5sbKjHkwRoqfVVDJmbwPcnUq5S3U2P8veJQPBFQyrWwXkfUEScCbeUK",
+            "4kcrnfeKRUa1ao4WSXWiP95G9MsqWQbgxAD3o17yaDeQ9yJsnHbhJ5Jajs1BbcHbK9rL2ipRytH7otvvfZUmVHHc"
+          ],
+          "timings": {
+            "start": 1792125333325,
+            "deposited": 1792125352965,
+            "burned": 1792125377879,
+            "attested": 1792125383833,
+            "relayed": 1792125397978,
+            "l1ToL2Ready": 1792125409622,
+            "registered": 1792125427340
+          },
+          "closeSig": "4omvzW8LqLyqD2dWNWiChYFwLfPSZV639LZQX5PL4bHeqiu8JDLpa2K9CAouNkEPsW5Rj8K4F78zXeUTcHw3QSst",
+          "root": "0x0fa870a25e61a112f6d556b5d6be7daf48d3126fcd3bb0ec56f5c51e007d6088",
+          "leafCount": 4,
+          "burnSig": "4n9QNfMWNMpDVoQjsSgQgJ5qGrVvxKybaxuG4iqx2yiLrbVHQxgVLuxcwwhs2QHQnda2BdEA1pBoznmVmJsEFK9j",
+          "messageSent": "3hGH8tNfRFUUnYY7gnHy4To9jdv3KWRRiGDensqS6ghX",
+          "relayTx": "0xfbc565104b5966e9599d2de1d13503d86164df4a5a998d772848d0190f3a1b16",
+          "relayGas": "648178",
+          "cctpNonce": "0x2ea18dc1fa6affcf403ebf35b470537fd25990ed99950574c63c2c5794d3d88a",
+          "l1ToL2Hash": "0x00e58d7c35ebb04edc3556a60d4ae27e8bee524d5e3ea55a4caa2b7c085b3add",
+          "l1ToL2Index": "90",
+          "registerTx": "0x27dbc94735ba049df462b52025dd1ffdafe3ebbdc21ebb5f980e6f9319b5e28d"
+        },
+        {
+          "kind": "exit",
+          "denomination": "1000000",
+          "claims": [
+            {
+              "run": 0,
+              "note": 0,
+              "tx": "0x0a35ce323d9006873d6ff4453253df5a4d5f43ac2ded80d17ed35f29e714b112"
+            },
+            {
+              "run": 0,
+              "note": 1,
+              "tx": "0x1ee5162c92079c9159496bbeb165b696b1aafb62d44292000bb0a06e112e4c21"
+            },
+            {
+              "run": 0,
+              "note": 3,
+              "tx": "0x1e4a3f3a1522b5a1571f7f3b81df599fd3f9c0eb847bd2a5f4d65baf7f759ed9"
+            },
+            {
+              "run": 1,
+              "note": 0,
+              "tx": "0x1ab3c2a3295e8e93dd69e37cef974ca2e33eb0b3c55940d6a09c97d3dd400006"
+            },
+            {
+              "run": 1,
+              "note": 1,
+              "tx": "0x1728b44e2f15eef043e392565a6bf4be8bfdd943be7a53c4345920f129162010"
+            }
+          ],
+          "timings": {
+            "start": 1792125454655,
+            "claimed": 1792125576572,
+            "exited": 1792125721508,
+            "closeMined": 1792125779697,
+            "closeProven": 1792128452355,
+            "closeBlockTime": 1792125852000,
+            "exitBatch": 1792128468000,
+            "attested": 1792129265080,
+            "received": 1792129264000,
+            "claimedOnSolana": 1792129307744,
+            "ethereumExitBlockTime": 1792125780000,
+            "ethereumProvenL1": 1792126128000,
+            "closeProvenL1": 1792128444000,
+            "claimedOnEthereum": 1792126584000,
+            "ethereumProven": 1792129396692
+          },
+          "destinations": [
+            "BLJWUucbV6XLoh1DUWDFEKq8xXh7eGdtuqMb37npgVRL",
+            "AQaHCmQuXftxwEXtbBwkUprwa88ZgRncJVVohckhG7Hg",
+            "6xBSPd3YGKiVE4BnwfJYJaUh7LxsSorv2YDZ81kTS3mF",
+            "Ee1ea9D6vhnfYF2vWJY4VdRvYSLpHCaVogY9ceGaJJaJ"
+          ],
+          "ethereum": {
+            "recipient": "0x3bae52952ee6f1691a437f715a7f45b9a7f2553b",
+            "exitTx": "0x05d58f5a06e5c7ae330e4c9abcb9457fecf3d7f336cb3791b3bb18af8336feaf",
+            "exitFee": "870130139220800000",
+            "exitBlock": 4515,
+            "proofL1Tx": "0xff8d36301fd4de8014af2a76a86302ac872a2e9ab963f3d17ca5bd97305d429a",
+            "claimTx": "0x779c85541e2c2a8c53e9af6f2962978b2c2881a68eb2446d8b7507009fcf7394",
+            "claimGas": "296426",
+            "outboxEpoch": "216"
+          },
+          "exitTxs": [
+            "0x2a82cb5b260700d64b467ca1e9adba57fd28e90df6ae4d9c832f4acc08ffc83d",
+            "0x0a278497ffa881a64e345b699abf101e10eedcc8eb466a9cbdd6abadd575b6c0",
+            "0x1553b4949f619117e90703b4310a1c8b3265ce63d13ba4dd5b4a0f4ac35ce4db",
+            "0x2bc5db92ad38a79d98b4e61e94cef20c920d9af69a90329cb8ce666d6af89315"
+          ],
+          "exitFees": [
+            "1028583914573400000",
+            "1367141468742600000",
+            "1028583914573400000",
+            "1705699022911800000"
+          ],
+          "closeTx": "0x25dbb2f73c8f89f80c05e4b9265004a7d02d4b620c54658b3bef8676512d8c5d",
+          "closeFee": "3969263135082000000",
+          "closeBlock": 4516,
+          "exitEpochId": "0",
+          "exitBatchTx": "0xdf7305762de55482a97a386f5ed41f7e9e3d3a628246ef6c12e3d91d74b00d41",
+          "exitBatchGas": "386118",
+          "iris": {
+            "nonce": "0x3493f4b0e7424b18442c01c3067d238a64d7eeb2b631f06e7628a7280a9453a7",
+            "minFinalityThreshold": 2000,
+            "finalityThresholdExecuted": 2000,
+            "feeExecuted": "0",
+            "expirationBlock": "0"
+          },
+          "receiveExitSig": "4kJpLS9Bj2RbK8NMNJK9EwTG743QkEzz1UdCxHarrpKT7FYmfwMw8Kr8kyYuBRhXMdgqc2NJMyFPg6dEkMcJiLa8",
+          "receiveExitFee": "5000",
+          "claimExitSigs": [
+            "5BqF8pbz1sFwxvk999nBVGrrn5EjJS7Gn5yuEew92VhpbyqVWdnB1FCdWwiYmWLidV5XM1TWweXEQDL5yHZsSqwB",
+            "5TjEFGQDx8RAuLThfMexnJV4sZQDwaKfiA8QK4xYdY7guikd1YPcPKvLb1ode5xTvKp7W4LB4Fj3YD97Dq8S7tJW",
+            "4avVuRKqxvJnuc492JRwd5AXgQi8SvUEZQTQqpeJLmGsFWWQpKRWwF2tLBvsZS2xiEKJSeJ2qR4vgQRBZUCdkDk5",
+            "5DLvgqyjAjDCv4YpXDAH45M4vSWih2X9jknNtvYQxiYq9fnmA7GHXtdBfXaaJrsxR9LNHwn1EeCwJAFkm71ibauy"
+          ],
+          "checks": {
+            "each fresh Solana address holds exactly $1": true,
+            "all exits marked paid; exit custody back to 0": true,
+            "a second claim_exit of the same exit is refused": true,
+            "no Solana destination (nor either half) in the exits' or the close's public effects on Aztec": true,
+            "the account that exits is absent from those public effects": true,
+            "the portal paid out exactly $1": true,
+            "exit_to_ethereum sent exactly this L2->L1 message": true,
+            "the fresh Ethereum address holds exactly $1": true,
+            "a second claimToEthereum of the same exit is refused": true,
+            "the Ethereum recipient is absent from the exit's public effects on Aztec": true
+          },
+          "closeProofL1Tx": "0x76bcf40c8b2ca31ccf8abc77b65f93f5b98e0d4c44dc01ade3490e121d90d590",
+          "receiveExitComputeUnits": 216743,
+          "claimExitComputeUnits": 42468,
+          "attestationSignatures": 2
+        },
+        {
+          "denomination": "1000000",
+          "epochId": "2",
+          "notes": 3,
+          "deposits": [
+            "2dXeeYVKtBjMoUKHJ2xgszGXegZ1AUChhhkFgprRrCV62u1TcUs4Bpa34JaKFkedKuk746BGMm78Gdj8VJYesQcU",
+            "3e3rSPTgjWU2enyB1inzTyK6cfwAE6YVcokco6c9SzWHuW86MgjYXyU45c5rigMiHszCyo1yL6s3wKefCvYkthCb",
+            "3cK9iQF98KWm5Mq8g6dnk2JTzdJ1uS3aYRoAGgcVCk794CsX8TotKd4nia8hCKXEiXQU9gakmKr5PeVWp6KBGx2V"
+          ],
+          "timings": {
+            "start": 1792142973248,
+            "deposited": 1792142977329,
+            "burned": 1792142990697,
+            "attested": 1792142996734,
+            "relayed": 1792143006464,
+            "l1ToL2Ready": 1792143009994,
+            "registered": 1792143034257
+          },
+          "closeSig": "3Ez4LctPWTCXWCSNeJ8p2YLHdsgnxJYVxP92bWb68Z8YPkZBtsuNcMfcBqaUNEYzEkfzvBzvJ5wdZYHqfziF19AR",
+          "root": "0x1f85b4882112df6f6572d3e686a86d4c4aee4f509e426e57b5654bbaa4779afc",
+          "leafCount": 4,
+          "burnSig": "2WJ827kJ2f7SGUekAsWmLmJQEBCWv9ugDyjCBqgcKBMTpvYsom3NDZV7PBzXDVZtrYYmaPYw3NFhLhoPxMd2sSRt",
+          "messageSent": "7rnLt5H4jEPiMVhpaCvWnyUWzEvTwbTwnNAUN2ZFZsRX",
+          "relayTx": "0xcef83769b0954901dcf03de3e3de904910203572048f781f5ca88614a8f8410a",
+          "relayGas": "648202",
+          "cctpNonce": "0xda127362e973e428aa09dce3fe47462d35c48214b1fadd9ea97c6501e938ce1d",
+          "l1ToL2Hash": "0x005e5ef7af847dfe0fa86c3f19a1ef7c00c5d026200cbd74b12d7673be512d6e",
+          "l1ToL2Index": "92",
+          "registerTx": "0x22dcb48c3e5df583ff6391e3cdcb911f65945d4156b9a21483c9cb1984a086f7"
+        },
+        {
+          "denomination": "1000000",
+          "epochId": "3",
+          "notes": 3,
+          "deposits": [
+            "Dwwb7HLUDgyAXjDFYtdqMzuzxiZBGFh1YPbPYB8tdMUKyGJnq6sYNyW214vFFTJHtKp6EEmmwwVv1h4iBZoeX1d",
+            "3CYsJLc5dyuMgU48s5W5oUedAc4XX2YXYoJEuvMUJcX4QWGUds5n3wT9BJymu2u8hZK2GDECCbS5TqSSLJzgX4r6",
+            "2urnnpQvBnmB6ECnhiQTFboCSsVe7vyyvfXr6yrtn2cdmAxmM43LmYV3Ugcpy5hzv8vdyuj7Ua5oSchThWkF33Lg"
+          ],
+          "timings": {
+            "start": 1792145189816,
+            "deposited": 1792145193658,
+            "burned": 1792145217037,
+            "attested": 1792145222542,
+            "relayed": 1792145236333,
+            "l1ToL2Ready": 1792145240099,
+            "registered": 1792145280813
+          },
+          "closeSig": "5w5dsGyDbNYK3qqbGbGkbGCbastu2aMNAoeU1S4cznhADkiGtVaS8HKyvsi6RQawtVUjzvVjHQbuJ44nTA8BrL2y",
+          "root": "0x07c355584b62274b40b923fd62da3449150958d01d7a695b1207ef1bb541285f",
+          "leafCount": 4,
+          "burnSig": "q2Se3nnXyAMRMMnTFRSbyP1LmwxHkZWqEQX7n5NSS8XvapTecESn12L4CuN9h76jLjXTQt4q6JNzzr159Z61VkJ",
+          "messageSent": "CySNpF4VBq5vRazsS5xqJFScBVhLamX7p4xEmzjQAAjg",
+          "relayTx": "0x3ead165a12b6f7be2e2379985cac61edb4469921250e45e5bfa909c06eb2fa33",
+          "relayGas": "648195",
+          "cctpNonce": "0x1f2cf2ed81d8ceb80aa240cc21a0ae9691097b139408e7c06293eaef4b97cd38",
+          "l1ToL2Hash": "0x005fc1498dbfaafc9e8ef9b8dfb749f65708a3e19f5e93d08c09fd7452eede11",
+          "l1ToL2Index": "93",
+          "registerTx": "0x1584895932a1d763281a5debbce3b3fd9ea9e30f0e1b193b9a215a72f125e0e3"
+        },
+        {
+          "denomination": "1000000",
+          "epochId": "4",
+          "notes": 3,
+          "deposits": [
+            "BkBsd54y6WnWUQeLJPFHidk1j24ututCKCZxPj7NuUNaoraWFJ8xgojsd5pJzBg2bXHLeU5ahWf4EPCG5xcdQzk",
+            "2XuPjM2Ev8BeriU29Fkvs9hpDkH3VWvb2iTVnCUPR3ZiP6nRELkufq6wWAe8ewpKQwSzUThgzeW5ZXtmsQmZ4ER6",
+            "5qWBttsK3imtFSB2i7yXvZgn2DZunc7PHw73PxXNTYdB2W84GF3w66nnS6sD13FFKPfheS2t1zvK1K9Ye5kYwcs6"
+          ],
+          "timings": {
+            "start": 1792152030312,
+            "deposited": 1792152033542,
+            "burned": 1792152049869,
+            "attested": 1792152055895,
+            "relayed": 1792152061323,
+            "l1ToL2Ready": 1792152068084,
+            "registered": 1792152092580
+          },
+          "closeSig": "4TGkyNdXDA4xVc7VuAaThPUXRJQ5GQbfNCqzsYHSuCTYTtqTLqTop69WoBQdjMwUCXCD3ypEwoNYW2onv5EytL6Z",
+          "root": "0x18dd7488534821b1acee23d384e7e3016ecb9dd0d3a8c5a73e83fe08934666c0",
+          "leafCount": 4,
+          "burnSig": "5HQU8BUNq1k4xX3r36PVYL4gS7m6t4WoU5nip1bvr9iFKwodKanXs4rSJAVU9JfQhWJWvTXx1JUVJs9S86P98C73",
+          "messageSent": "Gh96sinne87LHdAZzEp23s9ceq9CHQSueEYgKTvGXdHV",
+          "relayTx": "0xde297a73da68e91f3ef2207e4868a3a2fe45cfa014935e30d1b878c361f0f164",
+          "relayGas": "648190",
+          "cctpNonce": "0x92c6cd8a547c5b8e90a223523df1f301e6b3f5591f7d4f61e7ff22a4ba3a0851",
+          "l1ToL2Hash": "0x0054575279af424d7e4aa07e94892aea27aa3481025716705f8a304b4602c357",
+          "l1ToL2Index": "98",
+          "registerTx": "0x1ea9799bbd8941942230f5bd39d0f822a1c1303fc81c507c0ec760102e4c0734",
+          "ui": {
+            "app": "https://eclyps-six.vercel.app/app/",
+            "timings": {
+              "start": 1792151998698,
+              "deposited": 1792152017098,
+              "filled": 1792152034328,
+              "registered": 1792152092731,
+              "arrivedInPage": 1792152106948,
+              "claimed": 1792152209151,
+              "burned": 1792152351365,
+              "provenInPage": 1792153808610,
+              "claimedOnEthereum": 1792153841526
+            },
+            "checks": {
+              "the fresh Ethereum address holds exactly $1 of Sepolia USDC": true
+            },
+            "failures": [],
+            "exitToEthereum": {
+              "recipient": "0xe39FDEE2044365eCa4347B07E8B6C88644C92DE4",
+              "claimTx": "0x6df79f80bf2566fe73292667a93ddf80d4ae2d58dce53a28b1296a2af036037b",
+              "refs": []
+            },
+            "depositSig": "3Vz5733c2FH7ZDXeAEkqUbqW7WtRmoSTZRPHVmz8bgLRP4w9Tfvzd5mMaXGQxadipahyRGLnmVow9SFtZ9sQ3BWK",
+            "claimTx": "0x1c99fc0a170211360a49f7b9ae49b5def68c6bf869be537c18dce5084e4a25c8"
+          }
+        },
+        {
+          "denomination": "1000000",
+          "epochId": "5",
+          "notes": 3,
+          "deposits": [
+            "ZafxjniyjNXnxvYxN5d6vqwrkfgth4HfRjnNbDdQLpGrmQ37tKUyKe5oiWyQBs1QBtBfy7RibXtJgoGfzCitD8Z",
+            "3JToRrtgoAayDngPfwMqpD3nw3V4XLFxprjVa93gofCW9F1Q5yxh6fzgxqmfJTUiUrSVg5HTASjkNJZqmsdHxHrW",
+            "5vwy5SqX1g6zNmH7VVddVLPLUFjJM6QVCGibuzY1vfY5xpMnJ4nwtUvGnvAtN6bfCtn3tHZtwnE91ajHDv91ZqPA"
+          ],
+          "timings": {
+            "start": 1792155617652,
+            "deposited": 1792155621455,
+            "burned": 1792155641018,
+            "attested": 1792155646734,
+            "relayed": 1792155651729,
+            "l1ToL2Ready": 1792155656879,
+            "registered": 1792155680624
+          },
+          "closeSig": "5GyV3pfr6ewzZayYdE3zAw1LG29SQa5hCYAYLYmkjAioKFa6HiW3xGjRntvVWXoo9HYNBbGSm9oWyuwUYQVyPP21",
+          "root": "0x2f025f14ccc36c11dbe5d13c132a2a2d7f35a3f80453e5ac5a535dc628b370ff",
+          "leafCount": 4,
+          "burnSig": "2BgaPB8YYJopx4Hvq7ZiNnExCAB18U3Jdd5BvHf7Xacd8DfymR3bA2yr5yBioLVtjuUQN4VfbLbv4JV5kfY5icJy",
+          "messageSent": "GYdPHiJGkfV6YLUNHFAUvwfzT9NZrkJ3mUeiefLoqddS",
+          "relayTx": "0xcc11352bc58884866f749cc74915beac35f06f44842f2bf8747db0794a685b82",
+          "relayGas": "648202",
+          "cctpNonce": "0x494f266df904a4011e7f5c0c95decce3c3a3fb4b9164990566047ca960903b08",
+          "l1ToL2Hash": "0x00b5fc05fb017a42757fb1e13e0c5f221e9d078599847be9378d78443ad1136a",
+          "l1ToL2Index": "100",
+          "registerTx": "0x06221f238f46add21899f561f665a1771625a64272e1cbe6dcdc230268a26721",
+          "ui": {
+            "app": "https://eclyps-six.vercel.app/app/",
+            "timings": {
+              "start": 1792155576551,
+              "deposited": 1792155607426,
+              "filled": 1792155622135,
+              "registered": 1792155681653,
+              "arrivedInPage": 1792155698723,
+              "claimed": 1792155882888
+            },
+            "checks": {},
+            "failures": [],
+            "exitToSolana": {
+              "destination": "2tGRQ1XTePcUNi3dcKaZUo4dXPGAL8C9ZU8193JdHVQj"
+            },
+            "error": "locator.getAttribute: Target crashed "
+          }
+        },
+        {
+          "denomination": "1000000",
+          "epochId": "6",
+          "notes": 3,
+          "deposits": [
+            "4QVNW5P3Yr1JemZMWv61HEEdxWatpoo3itn587Z42nbEAzQTNSQ2myo7Dy62w5zJAiqvjeTLP1oj3L9CJdGPWV2K",
+            "5DAhJjaoXW8gZUd4pgf5yGe4om6vCUMk569D2p1kSEYeeNwrXWvNaRTgtvC67mwxbySRCED3N74TtqnZi4fww8UU",
+            "4qgn8LTyMuRLgtRJxMFudgKMLNdTu77kXDH8FuKztKno8Su8v79o69VwXk9wm8ug7vLFKqEKoD5yvtd2FLeH6ATu"
+          ],
+          "timings": {
+            "start": 1792156417212,
+            "deposited": 1792156420093,
+            "burned": 1792156432770,
+            "attested": 1792156438320,
+            "relayed": 1792156443357,
+            "l1ToL2Ready": 1792156447002,
+            "registered": 1792156472432
+          },
+          "closeSig": "3io1bgthasWuk1DZyaGmZLaCZwX1DBZNHmPetQprhzCGHCgxdJ1ZVXBno4LqQQteshhT4x1erUKF4cbqPvLv2Pry",
+          "root": "0x1c2986763ece5ea97dff3f10b9478cafee6b286705e5ccf4993e257cd793f07a",
+          "leafCount": 4,
+          "burnSig": "5f8G9TdaEoFgSdV9N3hEEXPejVF6kTS71QDnYBXQcptwKfhpNmZ6tizatpqfGGEt6ubK54hDT1ToxF981mJUFhq4",
+          "messageSent": "FDDywkrDJX1g8YdkL9cCuvKuCxc8F2L6mxQcDdMRcZwk",
+          "relayTx": "0xae2bc088017644334d3e39d95635acc1b7d6779dd1ca30a04e514f0643c26529",
+          "relayGas": "648173",
+          "cctpNonce": "0x637ca7e59917f8f09a6d31d91d2e240eae88ba61cd894abf7d7994cbaf6d7b3b",
+          "l1ToL2Hash": "0x00866a7d8ba9f9c902b4bf8356b7ee4a09476b396dd7e6c18bf5b9e86bfd98c3",
+          "l1ToL2Index": "101",
+          "registerTx": "0x24a52019c619c26e401d52532ff96f6be73443a2e8dc136e12e30b59b5765133",
+          "ui": {
+            "app": "https://eclyps-six.vercel.app/app/",
+            "timings": {
+              "start": 1792156377162,
+              "deposited": 1792156407663,
+              "filled": 1792156420539,
+              "registered": 1792156473532,
+              "arrivedInPage": 1792156483593,
+              "claimed": 1792156673592,
+              "burned": 1792156818665,
+              "epochFilled": 1792157054146,
+              "arrivedOnSolanaInPage": 1792159643851,
+              "claimedOnSolana": 1792159657090
+            },
+            "checks": {
+              "the fresh Solana address holds exactly $1 of devnet USDC": true,
+              "a second claim_exit of the same exit is refused": true
+            },
+            "failures": [],
+            "exitToSolana": {
+              "destination": "8sBmQmkiiGrnHN2d8rVrbSY5daKvXHGknUQfjjLK4u2Z",
+              "burnRefs": [
+                "0x0a1722b0637cdfa3f42d4ee64b2f43e8c312f3f835be07234a6a1d7311cfab88"
+              ],
+              "fillRun": 8,
+              "linkedLineShown": true,
+              "claimSig": "qUzfFBhNYe5tnG5KAoGZ2jhnCngTMzdftjKF5Mr1nhHMitP9P5Y8sdxoizB5bMww4G6PFXrYomL8NBLiiQxwEUN",
+              "refs": []
+            },
+            "resumed": {
+              "after": "ENOSPC: no space left on device, write",
+              "at": 1792158853348
+            },
+            "depositSig": "TScCTk7Xq7yfsyB54SNQ66WTuAyZY8iDXZXPyMF9CcJQYPzXrfwkkhkF9qWjoi8tXuCQhuPaKz1Q3MjmCRMu6F6",
+            "claimTx": "0x16cac55ebf7e99a39ce1d5465cdb6d8c1e54917170b9b3ec700d74fedb859565"
+          }
+        },
+        {
+          "kind": "exit",
+          "purpose": "fill",
+          "fill": 3,
+          "denomination": "1000000",
+          "claims": [
+            {
+              "run": 1,
+              "note": 2,
+              "tx": "0x10fe1a1f834e96be63c80164fb3a4aa77f001c5df8991318725b0280a2dd56c0"
+            },
+            {
+              "run": 1,
+              "note": 3,
+              "tx": "0x0783f708f99aeccb196658a10e3e2cadfc1feec1a48620bae823ce935f0613a9"
+            },
+            {
+              "run": 3,
+              "note": 0,
+              "tx": "0x293d96f0043d542afa8e0af250451e1877e9d6f5a884964a0cbd69b5c9263a59"
+            }
+          ],
+          "timings": {
+            "start": 1792156835581,
+            "claimed": 1792156950388,
+            "exited": 1792157050089,
+            "closeMined": 1792159676608,
+            "closeProven": 1792159676715,
+            "closeBlockTime": 1792157100000,
+            "exitBatch": 1792158432000,
+            "attested": 1792159677446,
+            "received": 1792159599000,
+            "claimedOnSolana": 1792159701831
+          },
+          "exitTxs": [
+            "0x1c66eebab5a0ba894bfe382f70c3a90a4e19581ac9e6e414719f3cf8bdfa07ae",
+            "0x2a8d05c7809a0863ff1a2918ce87ab6facfd6dc7eb4b1cbc32cd7341fe484112",
+            "0x1b553f838c7e138960683b043d82d2086e5a8a412efb05e23889562f103b500e"
+          ],
+          "exitFees": [
+            "1028583914573400000",
+            "1705699022911800000",
+            "1028583914573400000"
+          ],
+          "checks": {
+            "each fresh Solana address holds exactly $1": true,
+            "these exits marked paid": true,
+            "a second claim_exit of the same exit is refused": true,
+            "no Solana destination (nor either half) in the exits' or the close's public effects on Aztec": true,
+            "the account that exits is absent from those public effects": true
+          },
+          "destinations": [
+            "7hbiKwX7mkHwTH5ehqHAjxV27r5CTUXvRpJaAdYGMsE2",
+            "EHaBm9TitAfkQqRKCArL5XW14p7FenGrDTpPDL1LH8Ec",
+            "9NTLvFjXrJCa7zwNpHCH8VRFUc5oke28JvUBgsrSp9Ki"
+          ],
+          "exitEpochId": "1",
+          "leafIndexes": [
+            2,
+            3,
+            4
+          ],
+          "epochCount": 5,
+          "closeTx": "0x1c8ae6cc4b9af16c0a5b59602de08e40003b40e6bd3bb9c84042189de9d59bce",
+          "closeFee": "3972026885524200000",
+          "closeBlock": 4968,
+          "exitBatchTx": "0xf0a6107cbb6dfce570af371d8dcdd5830024160295f9d03f92686c4fdf630823",
+          "exitBatchGas": "386120",
+          "iris": {
+            "nonce": "0x4d533004b40067e24573e9b5dec194fcb3877e4862e6fdd6ddf67b515c8602de",
+            "minFinalityThreshold": 2000,
+            "finalityThresholdExecuted": 2000,
+            "feeExecuted": "0",
+            "expirationBlock": "0"
+          },
+          "receiveExitSig": "2WmcCtszxjAJXZfDbXJqKwLDKfXqrnbypwiwtHkbeWqDz9BQ77bBpWQRATZaCWFFverjhSzyR26e1eb8NDN68jh",
+          "receiveExitFee": "5000",
+          "claimExitSigs": [
+            "3XvrDFTmAa1bkat6TP3BnfZSjvrxyy8wYhzjT7doEyuw3tc4A3nfrZq2vavtTx6DRK72rjjZUMFdrzjVY4wZiXwe",
+            "47CJcZnVvyY1HUKzoorbS1PnXaCCgJBFFor39Sy7DZFoYex4PSV5HsdBKNYAb242MLjguo8ke9Jxed8QHiwJqeKj",
+            "33z2M4FZgAKjwGVdAMr8JxxHXkZToLyn6KDnnPaWr9g9shVMdAsXXsdWN6axT5zGCSSKwgSioxb1k8oDK1jvxg77"
+          ]
+        }
+      ],
+      "features": {
+        "exit": true,
+        "exitEthereum": true
+      },
+      "totality": {
+        "weekday": 0,
+        "hourUtc": 20,
+        "minutes": 60,
+        "first": "2026-10-18T20:00:00Z"
+      }
+    }
+  ],
+  "fpcTest": {
+    "version": "6.0.0-rc.3",
+    "fpc": "0x2f0dede9876d07ea8470741c91065d1ac9677debb01a43599e4937088625534f",
+    "deployTx": "0x1d089677aad5b7edc88b996d340b1bb29bf21ca36d3a0304279afbb3e6ac1ff6",
+    "slots": {
+      "1000000": 3,
+      "10000000": 3
+    },
+    "fund": {
+      "amount": "1000000000000000000000",
+      "mintTx": "0xd006b28bd440cfe521aa0cd82d27953dff379f9756cdbb657fd2b696b5a6a85a",
+      "depositTx": "0x09760649af5b1e5c4228d76b9d5af6f326c3f2f4c9bcb4828a8391af14d82729",
+      "claimTx": "0x165546d298237c8c1b0806af810543142fc7d2d91f69a4de0d35fcee8d8bb743"
+    },
+    "minFeePerMana": "1250000200000",
+    "claims": [
+      {
+        "run": 0,
+        "note": 0,
+        "tx": "0x273f18d48740c2773c99d3ff6f6cdf0db21464dff5278ac51f2e676b39c4e6c6",
+        "fee": "1032338915174200000",
+        "block": 12215,
+        "sentAtS": 227,
+        "minedAtS": 313
+      },
+      {
+        "run": 0,
+        "note": 1,
+        "tx": "0x025eead10c015a64fc2da2e80a715ff47b92acb1df260ea2ada61b41feefd7a2",
+        "fee": "1032338915174200000",
+        "block": 12216,
+        "sentAtS": 243,
+        "minedAtS": 313
+      },
+      {
+        "run": 0,
+        "note": 3,
+        "tx": "0x19b1789fcc882624058fb6feae253242f163020528756e81b67fe1d5c55fbf48",
+        "fee": "1032338915174200000",
+        "block": 12217,
+        "sentAtS": 260,
+        "minedAtS": 313
+      },
+      {
+        "run": 1,
+        "note": 0,
+        "tx": "0x2573060b55977cbc52ebfbc31369b626b80a2ec33ad79b522e848e12c2168cb2",
+        "fee": "1032338915174200000",
+        "block": 12218,
+        "sentAtS": 278,
+        "minedAtS": 314
+      },
+      {
+        "run": 1,
+        "note": 1,
+        "tx": "0x1951cb4b37b75cf5648d43fe172ae8a76dd1d9ed765f0848b650c29a419950c0",
+        "fee": "1032338915174200000",
+        "block": 12219,
+        "sentAtS": 295,
+        "minedAtS": 314
+      },
+      {
+        "run": 1,
+        "note": 2,
+        "tx": "0x2dd0899e5e749c39adbf2551824b39fc7187c43df59e7f8d51861fbf66b2ad80",
+        "fee": "1032338915174200000",
+        "block": 12220,
+        "sentAtS": 313,
+        "minedAtS": 319
+      }
+    ],
+    "checks": {
+      "every claim paid by EclypsFPC was included and succeeded": true,
+      "each recipient holds exactly one note privately": true,
+      "the FPC paid exactly the claims' fees": true,
+      "two or more claims were pending at once from the one fee payer": true,
+      "a spent sponsor slot is refused": true
+    },
+    "at": "2026-10-21T08:54:17.181Z"
+  },
+  "finisher": {
+    "solana": "FQumWRMyMAjhhVMJdntw4bkahwaERbGxxpQeT5AxwYed",
+    "ethereum": "0x0fCbe0411fC0a4E3A9D7ea1453628cEAa6DEc2C3",
+    "aztec": "0x0e99d03a700c36d5d96c3aca82e7b21807c8655057d14fb19d3bfd14beb37f4b"
+  }
+}

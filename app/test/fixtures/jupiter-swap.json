@@ -1,0 +1,24 @@
+{
+  "swapTransaction": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAGDweMG0n3aTtgliGR8Fk0yJHvdBoLboTB6eALpVuggvRbCOYeWzjxoF4z1aPm0hSU29m+MW6vBrPeRx8l+mVW9Ydcgwci3n0sOEbgn6YeHEV3fxseOme45d/9tuxblPAPEFzsaSyFbNH4TQAh2X/dbitEaaMda2LPFA6kX/NhClTjaUgoDmOzeqGtR+SzgnDfVa+H2K/hwkp0fxzVCSl2SiOGINQPO7+QpHaco/dCgPTp/Xc9KqoteT32t3zLvMzrD7QrD6Jq+titIOwGPsAIou90QNTuwjeq3j2M3ho7wcqE6rn9qLW50ohoASfWJ0X2Z1dtzWcZCeWAGsj2DLsmDzXs4rSfxpRenjKdprUgdyoiDR34sjTUmjnWr8q9u16kRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwZGb+UhFzL/7K26csOb57yM5bvF9xJrLEObOkAAAAAEedVb8jHAbu50xW7OaBUH/bGy3qP0jlECsc2iVrwTjwbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCpjJclj04kifG7PRApFI4NgwtaE5na/xCEBI572Nvp+Fm0P/on9df2SnTAmx8pWHneSwmrNt/J3VFLMhqns4zl6JRshtst/W/wNZAzdS5VCWvGjjBfSRFLvxRWHHg8MZ75CAoABQLAXBUACgAJA4kGAAAAAAAADQYABQAZCQwBAQkCAAUMAgAAAAolx9YCAAAADAEFARENBgAEAB0JDAEBCykMAAUECxkdCwsOCxsAGhIFBA8REwwBEAcGCxsAHBUFBBYYFAwIFwMCCyfQM++XeyvtXAIAAAAaPAACGigAAoADFU4AAAAASH8p0wIAAAAyAAAMAwUAAAEJAiG8bfvETPF+/B2T/ZwftAIdsXzl/YqOFB9AHZC4D09NBXZ3en58AwJ1dDCeSJMsQicZToxeL3T3/XgCfptax/6uITMhZOY6zpEVBerx65jwAuwS",
+  "lastValidBlockHeight": 434368743,
+  "prioritizationFeeLamports": 2342,
+  "computeUnitLimit": 1400000,
+  "loadedAccountsDataSize": 0,
+  "loadedAccountsDataSizeLimit": null,
+  "transactionVersion": 0,
+  "prioritizationType": {
+    "computeBudget": {
+      "microLamports": 1673,
+      "estimatedMicroLamports": 1673
+    }
+  },
+  "simulationSlot": 456331970,
+  "dynamicSlippageReport": null,
+  "simulationError": {
+    "errorCode": "TRANSACTION_ERROR",
+    "error": "Attempt to debit an account but found no record of a prior credit."
+  },
+  "addressesByLookupTableAddress": null,
+  "timeTaken": 0.015592427,
+  "createAtaTimeTaken": 0.007293064
+}

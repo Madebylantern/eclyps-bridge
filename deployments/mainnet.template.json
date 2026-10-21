@@ -1,0 +1,77 @@
+{
+  "_template": "Mainnet deployment, not deployed. Empty addresses are filled in by the deploy scripts once the owner approves each mainnet transaction. Aztec fees: ADR 0018.",
+  "network": "mainnet",
+  "solana": {
+    "rpc": "https://api.mainnet-beta.solana.com",
+    "cluster": "mainnet",
+    "gateway": "",
+    "usdcMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "config": "",
+    "admin": "",
+    "treasury": ""
+  },
+  "l1": {
+    "rpc": "https://ethereum-rpc.publicnode.com",
+    "chainId": 1,
+    "portal": ""
+  },
+  "aztec": {
+    "node": "",
+    "minter": "",
+    "token": "",
+    "claims": {
+      "100000000": "",
+      "1000000000": ""
+    },
+    "version": "",
+    "rollupVersion": 2070860440,
+    "admin": ""
+  },
+  "cctp": {
+    "iris": "https://iris-api.circle.com",
+    "domains": {
+      "ethereum": 0,
+      "solana": 5
+    }
+  },
+  "denominations": [
+    "100000000",
+    "1000000000"
+  ],
+  "params": {
+    "minBatchSize": 4,
+    "perEpochCap": 4,
+    "epochLenSlots": 2250,
+    "feeBps": 50,
+    "finisherBps": 30,
+    "depositCap": "50000000000"
+  },
+  "fees": {
+    "user": "eclypsFpc",
+    "operator": "feeJuice",
+    "eclypsFpc": {
+      "address": "",
+      "slots": {
+        "100000000": 3,
+        "1000000000": 12
+      }
+    },
+    "operatorFeeJuice": {
+      "low": 50,
+      "target": 200
+    },
+    "fpcFeeJuice": {
+      "low": 100,
+      "target": 500
+    }
+  },
+  "features": {
+    "exit": true,
+    "exitEthereum": true
+  },
+  "finisher": {
+    "solana": "",
+    "ethereum": "",
+    "aztec": ""
+  }
+}

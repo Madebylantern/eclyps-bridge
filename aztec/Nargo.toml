@@ -1,0 +1,2 @@
+[workspace]
+members = ["claim", "claim_test", "fpc", "minter", "vendor/token_contract"]

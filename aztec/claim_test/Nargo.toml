@@ -1,0 +1,12 @@
+[package]
+name = "eclyps_claim_test"
+authors = ["eclyps"]
+type = "lib"
+
+[dependencies]
+aztec = { git = "https://github.com/aztec-labs-eng/aztec-nr", tag = "v6.0.0-rc.3", directory = "aztec" }
+eclyps_claim_contract = { path = "../claim" }
+eclyps_fpc_contract = { path = "../fpc" }
+token = { path = "../vendor/token_contract" }
+eclyps_minter_contract = { path = "../minter" }
+eclyps_merkle = { path = "../../circuits/merkle-nr" }

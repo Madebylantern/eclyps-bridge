@@ -1,0 +1,9 @@
+# Vendored with the AIP-20 token (see ../../../Nargo.toml).
+[package]
+name = "test_authorization_contract"
+authors = ["defi-wonderland"]
+compiler_version = ">=1.0.0"
+type = "contract"
+
+[dependencies]
+aztec = { git = "https://github.com/aztec-labs-eng/aztec-nr", tag = "v6.0.0-rc.3", directory = "aztec" }

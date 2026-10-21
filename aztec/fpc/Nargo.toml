@@ -1,0 +1,8 @@
+[package]
+name = "eclyps_fpc_contract"
+authors = ["eclyps"]
+type = "contract"
+
+[dependencies]
+aztec = { git = "https://github.com/aztec-labs-eng/aztec-nr", tag = "v6.0.0-rc.3", directory = "aztec" }
+eclyps_merkle = { path = "../../circuits/merkle-nr" }

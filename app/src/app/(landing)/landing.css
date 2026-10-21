@@ -1,0 +1,365 @@
+/* The landing page (route `/`), ported unchanged from the approved design. It has its own root
+   layout, so none of the app's styles (Tailwind, globals.css) load here, and these never reach the
+   app. Inter and IBM Plex Mono are self-hosted by next/font (layout.tsx), and so is the owner's
+   preview face (Marcellus SC, face.ts), which loads only when it is switched on. */
+/* Layout: one black field. The splash is the eclipse with the name inside it. Below, a few
+   full-height scenes: the tagline, the crossing (Solana, bridge, Aztec) and the crowd, each of
+   which plays by itself once the page rests on it, and one closing line. No borders, no pills, no
+   cards: only light on black. */
+:root {
+  color-scheme: dark;
+  --black: #000000;
+  --white: #ffffff;
+  --text: #ececec;
+  --grey: #b5b5b5;
+  --dim: #8a8a8a;
+  --hair: #1d1d1d;
+
+  --font-display: var(--font-inter), "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: var(--font-inter), "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --track-wide: 0.5em;
+  --track-label: 0.22em;
+  --glow: 0 0 18px rgba(255, 255, 255, 0.55);
+  --halo: 0 0 3px #000, 0 0 8px #000, 0 0 16px rgba(0, 0, 0, 0.9);
+}
+* { box-sizing: border-box; }
+/* Pages: every section is one full screen (--screen) and the page always comes to rest on one,
+   never between two (scroll snap on the page's own scroller). The crossing and the crowd are one
+   screen each and play by themselves when the page arrives (scene.ts). The visible screen is
+   100dvh where it is known (iOS Safari's toolbar collapsing grows it, and the sections follow, so
+   nothing of a neighbour shows), else 100svh. */
+html {
+  --screen: 100vh;
+  background: var(--black); scrollbar-gutter: stable;
+  scroll-snap-type: y mandatory;
+}
+@supports (height: 100svh) { html { --screen: 100svh; } }
+@supports (height: 100dvh) { html { --screen: 100dvh; } }
+.hero, .tagline, .story, .verify { scroll-snap-align: start; scroll-snap-stop: always; }
+/* The cover (scene.ts): the splash holds the page until "Enter the darkness" is pressed. */
+html.covered, html.covered body { overflow: hidden; overscroll-behavior: none; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p { margin: 0; }
+h2 { font-weight: 200; text-wrap: balance; }
+:focus-visible { outline: none; text-shadow: var(--glow); }
+.label {
+  font-weight: 400;
+  font-size: 0.6875rem;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.mono { font-family: var(--font-mono); }
+
+/* ---------------- splash ---------------- */
+.hero {
+  position: relative;
+  height: var(--screen);
+  overflow: hidden;
+  background: var(--black);
+  --mx: 50%; --my: 44%; --mr: 240px; --hz: 92%;
+}
+.hero.no-gl { background: radial-gradient(circle at var(--mx) var(--my), var(--black) 0 calc(var(--mr) - 1px), #d9d9d9 var(--mr), #2a2a2a calc(var(--mr) * 1.12), var(--black) calc(var(--mr) * 1.6)); }
+#sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.wordmark {
+  position: absolute;
+  left: var(--mx); top: var(--my);
+  margin: 0;
+  line-height: 0;
+  color: var(--white);
+  transform: translate(-50%, calc(-50% - var(--lift, 0px)));
+  will-change: opacity, transform;
+}
+/* The drawn name (docs/brand/eclyps-wordmark.svg), as wide as the eclipse's radius; the awakening
+   (scene.ts) lends it a glow while the ring swells. */
+.wordmark svg {
+  display: block;
+  width: calc(var(--mr) * 1.08);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 calc(var(--mr) * 0.12) rgba(255, 255, 255, var(--wm-glow, 0)));
+}
+/* The name and the cue wait for the eclipse's first frame (scene.ts adds .lit), so they never show
+   on black alone: the name with the frame, the cue fading in over its own 0.9 s. Without
+   JavaScript they show at once; if the scene never starts, after 4 s. */
+html.js .hero:not(.lit) .wordmark { visibility: hidden; animation: splash-late 0s 4s forwards; }
+html.js .hero:not(.lit) .cue-enter { opacity: 0; pointer-events: none; animation: splash-late 0s 4s forwards; }
+@keyframes splash-late { to { visibility: visible; opacity: 1; pointer-events: auto; } }
+/* The name for screen readers and search, not shown. */
+.wordmark .wm-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.6875rem;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  /* a soft black halo, so the word reads on the bright band of the horizon */
+  text-shadow: var(--halo);
+  transition: color 0.4s, text-shadow 0.4s;
+}
+.scroll-cue:hover, .scroll-cue:focus-visible { color: var(--white); text-shadow: var(--halo), var(--glow); }
+/* and a faint shade in the scene under the cue */
+.scroll-cue { z-index: 1; }
+.scroll-cue i { display: block; width: 1px; height: 30px; background: linear-gradient(var(--grey), transparent); }
+/* The way in (scene.ts): on the cover the cue reads "Enter the darkness", a button dressed as the
+   cue and laid exactly over "Scroll", which waits unseen. The press fades it; once the eclipse has
+   swelled, "Scroll" comes and its line grows down from it. */
+.scroll-cue.cue-enter { z-index: 2; margin: 0; padding: 0; border: 0; background: none; appearance: none; font-family: inherit; font-weight: inherit; line-height: inherit; cursor: pointer; transition: color 0.4s, text-shadow 0.4s, opacity 0.9s, visibility 0s 0.9s; }
+.scroll-cue.cue-enter.gone { opacity: 0; visibility: hidden; }
+.scroll-cue.cue-scroll { opacity: 0; visibility: hidden; transition: color 0.4s, text-shadow 0.4s, opacity 1.6s, visibility 0s 1.6s; }
+.scroll-cue.cue-scroll i { transform: scaleY(0); transform-origin: 50% 0; transition: transform 1.7s 0.5s; }
+.scroll-cue.cue-scroll.shown { opacity: 1; visibility: visible; transition: color 0.4s, text-shadow 0.4s, opacity 1.6s; }
+.scroll-cue.cue-scroll.shown i { transform: none; }
+/* gone at once as the page leaves the cover; back, slowly, once it rests there again */
+.scroll-cue.cue-scroll.shown.away { opacity: 0; visibility: hidden; transition: color 0.4s, text-shadow 0.4s, opacity 0.15s, visibility 0s 0.15s; }
+.scroll-cue.now, .scroll-cue.now i { transition: none; }
+@media (prefers-reduced-motion: reduce) { .scroll-cue.cue-enter, .scroll-cue.cue-scroll, .scroll-cue.cue-scroll i { transition: none; } }
+
+/* ---------------- tagline ---------------- */
+.tagline {
+  height: var(--screen);
+  overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.15em;
+  padding-inline: 20px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: calc(clamp(2.6rem, 1.2rem + 6vw, 7rem) * var(--d-scale, 1));
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--white);
+}
+.tagline span { display: block; }
+.tagline .second { color: var(--grey); transition: color 0.6s; }
+.tagline.lit .second { color: var(--white); }
+
+/* ---------------- the two stories: one screen each ---------------- */
+.story { position: relative; height: var(--screen); }
+.stage {
+  position: relative;
+  height: var(--screen);
+  display: flex; flex-direction: column;
+  padding-inline: 20px;
+  overflow: hidden;
+}
+.stage-head { padding-top: clamp(56px, 10vh, 110px); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.stage-head h2 { font-size: calc(clamp(1.7rem, 1.1rem + 2.4vw, 3rem) * var(--d-scale, 1)); line-height: 1.15; color: var(--white); max-width: 20ch; }
+.scene { position: relative; flex: 1; min-height: 220px; }
+.scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+/* The route as three quiet words under it; each lights as the notes reach it (scene.ts: `lit`
+   once reached, `on` where they are now) and its one line comes with it. */
+.stations { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; pointer-events: none; }
+.station {
+  position: absolute; top: calc(50% + 56px);
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  width: min(15em, 30vw);
+  text-align: center;
+  transition: color 0.9s, text-shadow 0.9s;
+  color: var(--dim);
+}
+.station b { font-weight: 400; font-size: 0.75rem; letter-spacing: var(--track-label); text-transform: uppercase; }
+.station small { font-size: 0.875rem; line-height: 1.4; color: var(--grey); text-wrap: balance; opacity: 0; transform: translateY(4px); transition: opacity 1.2s, transform 1.2s; }
+.station.lit { color: var(--text); }
+.station.lit small { opacity: 1; transform: none; }
+.station.on { color: var(--white); text-shadow: var(--glow); }
+.station.on small { text-shadow: none; }
+
+/* "How it works": one quiet word under the scene, to the Docs page. */
+.crossing .how {
+  align-self: center;
+  margin-bottom: clamp(40px, 8vh, 90px);
+  font-weight: 400; font-size: 0.6875rem; line-height: 1;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--grey); text-decoration: none;
+  transition: color 0.4s, text-shadow 0.4s;
+}
+.crossing .how:hover, .crossing .how:focus-visible { color: var(--white); text-shadow: var(--glow); }
+
+.crowd-lines { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: clamp(48px, 9vh, 100px); min-height: 5.5em; }
+.crowd-lines p { font-weight: 200; font-size: calc(clamp(1.4rem, 1rem + 1.6vw, 2.3rem) * var(--d-scale, 1)); line-height: 1.2; color: var(--white); max-width: 22ch; }
+.crowd-lines p.later { color: var(--grey); }
+
+/* ---------------- close ---------------- */
+/* The last screen is the closing line and the footer together: the footer has a fixed height, and
+   the closing line takes the rest of the screen. */
+.verify {
+  --foot: calc(184px + env(safe-area-inset-bottom, 0px));
+  height: calc(var(--screen) - var(--foot));
+  overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px; padding-inline: 20px; text-align: center;
+}
+.verify h2 { font-size: calc(clamp(1.9rem, 1.2rem + 2.8vw, 3.4rem) * var(--d-scale, 1)); line-height: 1.12; color: var(--white); max-width: 18ch; }
+.verify p { color: var(--grey); max-width: 44ch; }
+/* The route: each network's mark over its name, joined by hairlines. Every mark shows --mk tall;
+   the files' own margins are taken back with negative margins. The names hang under their marks
+   without widening them, so the hairlines keep an even gap to every mark. The marks come out of
+   the dark with their names. */
+.verify .route {
+  --mk: 34px;
+  display: grid; grid-template-columns: auto 1fr auto 1fr auto 1fr auto; align-items: start;
+  width: min(100%, 30rem); margin: 0 0 8px; padding: 0 0 calc(14px + 1.3em); list-style: none;
+  font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.14em; color: var(--dim); text-transform: uppercase;
+}
+.route .stop { position: relative; }
+.route .stop > [data-emerge] { position: absolute; left: 50%; top: calc(var(--mk) + 14px); transform: translateX(-50%); white-space: nowrap; }
+.route .mark { display: flex; align-items: center; justify-content: center; height: var(--mk); }
+.route .mark img { display: block; width: auto; height: calc(var(--mk) * 0.9); transition: opacity 2.1s, filter 2.1s; }
+.route .eth img { height: calc(var(--mk) * 1.0909); margin: calc(var(--mk) * -0.0455) calc(var(--mk) * -0.2386); }
+.route .aztec img { height: calc(var(--mk) * 1.5); margin: calc(var(--mk) * -0.25); }
+.route .leg { position: relative; height: var(--mk); margin-inline: 12px; }
+.route .leg::before { content: ""; position: absolute; inset: 50% 0 auto; height: 1px; background: var(--dim); opacity: 0.6; transform-origin: left; transition: transform 1.6s 0.4s; }
+.route .stop:has(.em-hold) img { opacity: 0; filter: blur(4px); }
+.route:has(.em-hold) .leg::before { transform: scaleX(0); }
+@media (max-width: 480px) {
+  .verify .route { --mk: 28px; padding-inline: 8px; font-size: 0.625rem; letter-spacing: 0.1em; }
+  .route .leg { margin-inline: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route .mark img { transition: opacity 0.6s; }
+  .route .leg::before { transition: none; }
+}
+footer { height: calc(184px + env(safe-area-inset-bottom, 0px)); padding: 24px 20px calc(36px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 14px; text-align: center; overflow: hidden; }
+footer .mark { font-weight: 300; letter-spacing: var(--track-wide); padding-left: var(--track-wide); color: var(--white); font-size: 1rem; }
+footer p { font-size: 0.6875rem; letter-spacing: 0.06em; color: var(--dim); }
+footer p.beta { color: var(--grey); margin-bottom: -6px; text-wrap: balance; }
+footer p.beta a { color: var(--white); text-decoration: none; white-space: nowrap; transition: text-shadow 0.4s; }
+footer p.beta a:hover, footer p.beta a:focus-visible { text-shadow: var(--glow); }
+
+@media (max-width: 640px) {
+  /* Three narrow columns on a phone: the words and their lines a little smaller. */
+  .station { top: calc(50% + 36px); gap: 6px; width: 31vw; }
+  .station b { font-size: 0.6875rem; letter-spacing: 0.16em; }
+  .station small { font-size: 0.75rem; }
+  .scene { min-height: 150px; }
+  .crossing .how { margin-bottom: clamp(28px, 6svh, 64px); }
+}
+/* Short phones: a little less air. */
+@media (max-width: 640px) and (max-height: 720px) {
+  .stage-head { padding-top: 48px; gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .station, .station small, .tagline .second { transition: none; }
+}
+
+/* ---------------- lines that emerge from the dark (emerge.ts) ----------------
+   A few lines wait unseen until they arrive, then come out of the dark word by word. The word
+   selector outranks `.tagline span`. */
+[data-emerge].em-hold { opacity: 0; }
+[data-emerge] .ew { display: inline-block; }
+
+/* ---------------- ways into the app ----------------
+   Quiet words that brighten on hover, like the scroll cue. Under the tagline the link sits
+   absolutely, so the two lines stay exactly where they were, and it appears once the second
+   line lights. */
+.tagline { position: relative; }
+.tagline .enter {
+  position: absolute; left: 50%; bottom: calc(14vh + env(safe-area-inset-bottom, 0px));
+  bottom: calc(14svh + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  font-family: var(--font-body); font-weight: 400; font-size: 0.6875rem; line-height: 1;
+  letter-spacing: var(--track-label); text-transform: uppercase; white-space: nowrap;
+  color: var(--grey); text-decoration: none;
+  opacity: 0; transition: opacity 0.8s 0.9s, color 0.4s, text-shadow 0.4s;
+}
+.tagline.lit .enter { opacity: 1; }
+/* The one-liner above the tagline: placed absolutely, like the link below it, so the two lines
+   stay exactly where they were. The splash keeps only the eclipse and the name. */
+.tagline .bridge-line {
+  position: absolute; left: 50%; top: 14vh; top: 14svh;
+  transform: translateX(-50%);
+  margin: 0;
+  width: max-content; max-width: calc(100vw - 32px);
+  font-family: var(--font-display); font-weight: 200;
+  font-size: calc(clamp(1.1rem, 0.85rem + 0.9vw, 1.6rem) * var(--d-scale, 1)); line-height: 1.15;
+  letter-spacing: -0.015em; text-align: center;
+  color: var(--grey);
+}
+.enter i, .go i { font-style: normal; display: inline-block; transition: transform 0.4s; }
+.tagline .enter:hover, .tagline .enter:focus-visible { color: var(--white); text-shadow: var(--glow); }
+.verify .go {
+  margin-top: 8px; color: var(--white); font-weight: 400; text-decoration: none;
+  transition: text-shadow 0.4s;
+}
+.verify .go:hover, .verify .go:focus-visible { text-shadow: var(--glow); }
+.enter:hover i, .enter:focus-visible i, .go:hover i, .go:focus-visible i { transform: translateX(4px); }
+footer .foot-links { display: flex; gap: 22px; }
+footer .foot-links a, footer .foot-links button { font-size: 0.6875rem; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color 0.4s, text-shadow 0.4s; }
+footer .foot-links a:hover, footer .foot-links a:focus-visible, footer .foot-links button:hover, footer .foot-links button:focus-visible { color: var(--white); text-shadow: var(--glow); }
+/* The sound word (sound-gate.ts) is a button, dressed exactly like the links beside it. */
+footer .foot-links button { margin: 0; padding: 0; border: 0; background: none; font-family: inherit; font-weight: inherit; line-height: inherit; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .tagline .enter { transition: none; } }
+
+/* ---------------- the docked way in ----------------
+   Once the tagline's "Open the app" scrolls up to the top of the screen it docks there (scene.ts
+   swaps it for this fixed twin at the same place) and stays through every section after it. It
+   dims while a title passes under it, never hides. */
+.dock {
+  position: fixed; z-index: 10; left: 50%; top: calc(env(safe-area-inset-top, 0px) + 10px);
+  transform: translateX(-50%);
+  padding: 6px 10px; /* a larger target, nothing drawn */
+  font-family: var(--font-body); font-weight: 400; font-size: 0.6875rem; line-height: 1;
+  letter-spacing: var(--track-label); text-transform: uppercase; white-space: nowrap;
+  color: var(--grey); text-decoration: none;
+  text-shadow: var(--halo);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.4s, color 0.4s, text-shadow 0.4s;
+}
+.dock.on { opacity: 1; visibility: visible; }
+.dock.on.under { opacity: 0.45; }
+.dock.on:hover, .dock.on:focus-visible { color: var(--white); text-shadow: var(--halo), var(--glow); opacity: 1; }
+.dock i { font-style: normal; display: inline-block; transition: transform 0.4s; }
+.dock:hover i, .dock:focus-visible i { transform: translateX(4px); }
+/* the hand-off is instant both ways, so the word seems to stick to the top */
+.dock.snap { transition: color 0.4s, text-shadow 0.4s; }
+.tagline .enter.docked { visibility: hidden; transition: none; }
+
+/* ---------------- phones in daylight ----------------
+   At weight 200 the large lines turn to hairlines on a small bright screen. */
+@media (max-width: 600px) {
+  h2, .tagline, .tagline .bridge-line, .crowd-lines p { font-weight: 300; }
+}
+
+/* ---------------- face II, the owner's preview (face.ts) ----------------
+   Marcellus SC, Roman inscription capitals, for the display lines only: the name, the tagline and
+   its one-liner, the titles and the crowd lines. Wide letters, so set smaller and a little open.
+   Everything small stays Inter. Visitors never see it. */
+[data-face="2"] { --d-scale: 0.86; --font-face2: var(--font-marcellus), "Marcellus SC", Georgia, serif; }
+[data-face="2"] .wordmark { font-family: var(--font-face2); font-weight: 400; }
+[data-face="2"] :is(.tagline > span, .tagline .bridge-line, .stage-head h2, .crowd-lines p, .verify h2) {
+  font-family: var(--font-face2); font-weight: 400; letter-spacing: 0.045em;
+}
+[data-face="2"] .tagline { line-height: 1.12; gap: 0.12em; }
+[data-face="2"] .tagline .bridge-line { line-height: 1.2; }
+[data-face="2"] .stage-head h2, [data-face="2"] .verify h2 { line-height: 1.22; }
+[data-face="2"] .crowd-lines p { line-height: 1.28; }
+
+/* Opening the app while the sound plays: the page fades to black with the sound (sound-gate.ts). */
+html.leaving body { opacity: 0; transition: opacity var(--leave-s, 1.6s) ease-in; pointer-events: none; }
+
+/* A soft shadow hugging the cue's words only, so they read on the bright surface without
+   dimming the rest of it. */
+.scroll-cue span { position: relative; }
+.scroll-cue span::before {
+  content: ""; position: absolute; z-index: -1; left: -28px; right: -28px; top: -14px; bottom: -14px;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.7) 55%, rgba(0, 0, 0, 0));
+  pointer-events: none;
+}

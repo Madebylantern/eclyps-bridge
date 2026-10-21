@@ -1,0 +1,18 @@
+[toolchain]
+# Pin both: avm otherwise maps Anchor 1.2.1 to Solana 3.1.10 and switches the CLI (ADR 0001).
+anchor_version = "1.2.1"
+solana_version = "4.3.0"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+eclyps_gateway = "4GG6NHxUSSDbVoXZu9BbVVRTG5gYuKqjkhNw3DVoB1jf"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "cargo test -p eclyps-gateway"

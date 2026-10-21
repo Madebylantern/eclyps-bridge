@@ -1,0 +1,37 @@
+{
+  "description": "Leave to Ethereum vectors (ADR 0014 section 4). commitment: made by the app, burned with on Aztec (EclypsClaim.exit_to_ethereum) and rebuilt by EclypsPortal.claimToEthereum. content: the L2->L1 message content the claim contract sends and the portal consumes.",
+  "tag": "0x00000000000000000065636c7970733a657869742d746f2d657468657265756d",
+  "tagText": "eclyps:exit-to-ethereum",
+  "commitment": "sha256ToField(abi.encode(address recipient, bytes32 exitSecret))",
+  "content": "sha256ToField(abi.encode(uint256 tag, bytes32 commitment, uint256 denomination))",
+  "vectors": [
+    {
+      "recipient": "0x00000000000000000000000000000000000000aa",
+      "exitSecret": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "denomination": "100000000",
+      "commitment": "0x009c05fe8a6c4967208a040cd3b13e1c72202f50fc36bfc3f4f57ac9ab7551bc",
+      "content": "0x00046b820e27148de9405cb7b765190e2bc5653aa6e280a41ae1205b1c351a38"
+    },
+    {
+      "recipient": "0x0102030405060708090a0b0c0d0e0f1011121314",
+      "exitSecret": "0x2d599ef16cfe8609ee72b1ffd859f5832d677d5bda6d5221f14d48eb4ec4ebe6",
+      "denomination": "1000000000",
+      "commitment": "0x00b16b13fe18cfb299de75692bd7901efeb9d991db26acaf56aebf7db7ca74a7",
+      "content": "0x00313b9991c00c0269ee82d83fd3dc886372a4f57fb6c41bde452ed542cf9d59"
+    },
+    {
+      "recipient": "0xffffffffffffffffffffffffffffffffffffffff",
+      "exitSecret": "0x30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000000",
+      "denomination": "1000000",
+      "commitment": "0x0001a5af5e947537546cff1a04795694ad6a55b46d8b71450cd6c0556c503a4f",
+      "content": "0x00f264d9cbece7d7a932f24c6e06563fc4ce02f6bd68d29ca496d0e9f647e52a"
+    },
+    {
+      "recipient": "0xdeadbeef00000000000000000000000000000000",
+      "exitSecret": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "denomination": "10000000000",
+      "commitment": "0x00c24033cd2656e510b128dd498b8c342dfc49604adec0484cadc24dbf0f9875",
+      "content": "0x0012b5af4957e4c6b80a81503e5abe31f6b4af70d43cc58ac16ba9c34c076670"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[package]
+name = "eclyps_merkle"
+type = "lib"
+authors = ["eclyps"]
+# Tested with nargo 1.0.0-beta.25 (Aztec 5.2.x) and 1.0.0-rc.3 (Aztec 6.0.0-rc.1 and rc.3); ADR 0001.
+compiler_version = ">=0.34.0"
+
+[dependencies]
+# v0.3.0: the version aztec-nr v6.0.0-rc.3 pins (bn254 module identical to v0.4.0).
+poseidon = { tag = "v0.3.0", git = "https://github.com/noir-lang/poseidon" }

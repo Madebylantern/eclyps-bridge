@@ -1,0 +1,17 @@
+# Vendored from defi-wonderland/aztec-standards a3859e5 (2026-07-09), src/token_contract: the
+# AIP-20 token (MIT, LICENSE). Unmodified except that its test module was dropped and its
+# dependencies point at our aztec-nr pin; upstream targets v5.0.0-rc.2 and has no v6 release yet.
+# Its 79 tests pass on v6.0.0-rc.3 unchanged (ADR 0020). The authorization contract below is the
+# interface of the optional transfer hook, which Eclyps leaves off (auth_contract = zero).
+[package]
+name = "token_contract"
+authors = ["defi-wonderland"]
+compiler_version = ">=1.0.0"
+type = "contract"
+
+[dependencies]
+aztec = { git = "https://github.com/aztec-labs-eng/aztec-nr", tag = "v6.0.0-rc.3", directory = "aztec" }
+uint_note = { git = "https://github.com/aztec-labs-eng/aztec-nr", tag = "v6.0.0-rc.3", directory = "uint-note" }
+balance_set = { git = "https://github.com/aztec-labs-eng/aztec-nr", tag = "v6.0.0-rc.3", directory = "balance-set" }
+compressed_string = { git = "https://github.com/aztec-labs-eng/aztec-nr", tag = "v6.0.0-rc.3", directory = "compressed-string" }
+authorization_contract = { path = "src/test/test_authorization_contract" }

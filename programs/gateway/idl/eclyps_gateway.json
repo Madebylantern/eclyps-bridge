@@ -1,0 +1,5510 @@
+{
+  "address": "4GG6NHxUSSDbVoXZu9BbVVRTG5gYuKqjkhNw3DVoB1jf",
+  "metadata": {
+    "name": "eclyps_gateway",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Eclyps Solana gateway (Phase 0 skeleton, S4)"
+  },
+  "instructions": [
+    {
+      "name": "accept_admin",
+      "discriminator": [
+        112,
+        42,
+        45,
+        90,
+        116,
+        181,
+        13,
+        170
+      ],
+      "accounts": [
+        {
+          "name": "new_admin",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "apply_lane_params",
+      "discriminator": [
+        238,
+        255,
+        242,
+        169,
+        104,
+        29,
+        51,
+        33
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lanes",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  101,
+                  115
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "apply_params",
+      "discriminator": [
+        188,
+        203,
+        86,
+        124,
+        178,
+        34,
+        133,
+        116
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "block_address",
+      "discriminator": [
+        199,
+        140,
+        68,
+        34,
+        1,
+        27,
+        188,
+        74
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "docs": [
+            "The guardian or the admin; pays the record's rent (about 0.0022 SOL) and gets it back on",
+            "removal."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "screening",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  114,
+                  101,
+                  101,
+                  110,
+                  105,
+                  110,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "blocked",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  99,
+                  107,
+                  101,
+                  100
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "address"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "address",
+          "type": "pubkey"
+        },
+        {
+          "name": "list",
+          "type": "u8"
+        },
+        {
+          "name": "reference",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "cancel_lane_params",
+      "discriminator": [
+        165,
+        47,
+        14,
+        184,
+        196,
+        144,
+        116,
+        192
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lanes",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  101,
+                  115
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "cancel_params",
+      "discriminator": [
+        100,
+        172,
+        113,
+        60,
+        25,
+        68,
+        80,
+        172
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "cancel_unblock",
+      "discriminator": [
+        59,
+        142,
+        169,
+        114,
+        208,
+        105,
+        252,
+        251
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "blocked",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  99,
+                  107,
+                  101,
+                  100
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "address"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "address",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "claim_exit",
+      "discriminator": [
+        109,
+        115,
+        53,
+        37,
+        198,
+        221,
+        203,
+        41
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "docs": [
+            "The user or a relayer; pays the rent of the destination's USDC account if it is missing."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "exit_batch",
+          "writable": true
+        },
+        {
+          "name": "exit_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  105,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "exit_custody",
+          "writable": true
+        },
+        {
+          "name": "destination_wallet"
+        },
+        {
+          "name": "destination_usdc",
+          "docs": [
+            "handler); created here when missing."
+          ],
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "front",
+          "writable": true
+        },
+        {
+          "name": "front_payee",
+          "writable": true
+        },
+        {
+          "name": "front_rent_receiver",
+          "writable": true
+        },
+        {
+          "name": "liquidity",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        },
+        {
+          "name": "exit_epoch_id",
+          "type": "u64"
+        },
+        {
+          "name": "leaf_index",
+          "type": "u16"
+        },
+        {
+          "name": "path",
+          "type": {
+            "array": [
+              {
+                "array": [
+                  "u8",
+                  32
+                ]
+              },
+              8
+            ]
+          }
+        },
+        {
+          "name": "destination",
+          "type": "pubkey"
+        },
+        {
+          "name": "secret",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "close_epoch",
+      "discriminator": [
+        13,
+        87,
+        7,
+        133,
+        109,
+        14,
+        83,
+        25
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "epoch",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "discriminator": [
+        242,
+        35,
+        198,
+        137,
+        82,
+        225,
+        242,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "docs": [
+            "Pays the rent for the 64 bytes this deposit adds to the epoch account."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authority",
+          "docs": [
+            "Owns `source`; recorded as the depositor, the only signer who can refund this leaf."
+          ],
+          "signer": true
+        },
+        {
+          "name": "config",
+          "docs": [
+            "Writable: the deposit counts towards `net_deposits` (deposit cap)."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "epoch",
+          "writable": true
+        },
+        {
+          "name": "source",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true
+        },
+        {
+          "name": "fee_vault",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "blocked",
+          "docs": [
+            "unless the guardian listed that address; the deposit is refused when it holds a record.",
+            "Last, so clients that pass it also work with a gateway built before it (extra accounts are",
+            "ignored there)."
+          ],
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  99,
+                  107,
+                  101,
+                  100
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        },
+        {
+          "name": "secret_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "deposit_express",
+      "discriminator": [
+        33,
+        235,
+        249,
+        185,
+        162,
+        69,
+        177,
+        15
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "docs": [
+            "Pays the express epoch's rent (about 0.002 SOL)."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authority",
+          "docs": [
+            "Owns `source`; recorded as the depositor."
+          ],
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lanes",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  101,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "express",
+          "writable": true
+        },
+        {
+          "name": "source",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true
+        },
+        {
+          "name": "fee_vault",
+          "writable": true
+        },
+        {
+          "name": "crossing_pool",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "blocked",
+          "docs": [
+            "unless the guardian listed that address; the deposit is refused when it holds a record.",
+            "Last, so clients that pass it also work with a gateway built before it (extra accounts are",
+            "ignored there)."
+          ],
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  99,
+                  107,
+                  101,
+                  100
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        },
+        {
+          "name": "secret_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "max_express_fee",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "disable_pool_fronts",
+      "discriminator": [
+        112,
+        99,
+        93,
+        232,
+        64,
+        38,
+        230,
+        160
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lanes",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  101,
+                  115
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "front_exit",
+      "discriminator": [
+        13,
+        148,
+        16,
+        122,
+        154,
+        40,
+        210,
+        83
+      ],
+      "accounts": [
+        {
+          "name": "solver",
+          "docs": [
+            "Pays the destination, the Front rent and, if missing, the destination's USDC account."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lanes",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  101,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "exit_batch"
+        },
+        {
+          "name": "front",
+          "writable": true
+        },
+        {
+          "name": "solver_usdc",
+          "writable": true
+        },
+        {
+          "name": "payee_usdc",
+          "docs": [
+            "Where `claim_exit` repays the solver: any USDC account but the gateway's own."
+          ]
+        },
+        {
+          "name": "destination_wallet"
+        },
+        {
+          "name": "destination_usdc",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        },
+        {
+          "name": "exit_epoch_id",
+          "type": "u64"
+        },
+        {
+          "name": "destination",
+          "type": "pubkey"
+        },
+        {
+          "name": "secret",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "fee",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "front_exit_from_pool",
+      "discriminator": [
+        198,
+        124,
+        164,
+        33,
+        50,
+        249,
+        167,
+        189
+      ],
+      "accounts": [
+        {
+          "name": "keeper",
+          "docs": [
+            "Pays the Front rent and, if missing, the destination's USDC account; gets the rent back."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lanes",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  101,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "liquidity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  113,
+                  117,
+                  105,
+                  100,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "exit_batch"
+        },
+        {
+          "name": "front",
+          "writable": true
+        },
+        {
+          "name": "destination_wallet"
+        },
+        {
+          "name": "destination_usdc",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        },
+        {
+          "name": "exit_epoch_id",
+          "type": "u64"
+        },
+        {
+          "name": "destination",
+          "type": "pubkey"
+        },
+        {
+          "name": "secret",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "init_lanes",
+      "discriminator": [
+        214,
+        225,
+        88,
+        158,
+        48,
+        41,
+        175,
+        213
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lanes",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  101,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "crossing_pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  111,
+                  115,
+                  115,
+                  105,
+                  110,
+                  103,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "liquidity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  113,
+                  117,
+                  105,
+                  100,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "liquidity_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  113,
+                  117,
+                  105,
+                  100,
+                  105,
+                  116,
+                  121,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "LaneParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "init_screening",
+      "discriminator": [
+        50,
+        115,
+        106,
+        113,
+        219,
+        18,
+        122,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "screening",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  114,
+                  101,
+                  101,
+                  110,
+                  105,
+                  110,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "docs": [
+            "Becomes the admin. Must be the program's upgrade authority, so nobody can front-run",
+            "initialization and choose the portal that receives every batch (ADR 0010)."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "escrow",
+          "docs": [
+            "Escrow: owned by the config PDA. Only `send_batch` and `refund_deposit` sign for it."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_vault",
+          "docs": [
+            "Fee vault (ADR 0012): owned by the config PDA. Only `send_batch` (pays the fees out) and",
+            "`refund_deposit` (gives a fee back) sign for it."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  101,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "exit_authority",
+          "docs": [
+            "every exit and owns exit custody."
+          ],
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  105,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "exit_custody",
+          "docs": [
+            "Exit custody (ADR 0009): owned by the exit authority. CCTP pays exits in (`receive_exit`);",
+            "only `claim_exit` signs for it."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  105,
+                  116,
+                  95,
+                  99,
+                  117,
+                  115,
+                  116,
+                  111,
+                  100,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "treasury",
+          "docs": [
+            "The treasury named in the params: it must already be a USDC token account."
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "program",
+          "address": "4GG6NHxUSSDbVoXZu9BbVVRTG5gYuKqjkhNw3DVoB1jf"
+        },
+        {
+          "name": "program_data"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "InitializeArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "lp_deposit",
+      "discriminator": [
+        27,
+        77,
+        210,
+        69,
+        12,
+        43,
+        148,
+        16
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "liquidity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  113,
+                  117,
+                  105,
+                  100,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "source",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "lp_withdraw",
+      "discriminator": [
+        205,
+        206,
+        130,
+        170,
+        173,
+        51,
+        11,
+        169
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "position"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "liquidity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  113,
+                  117,
+                  105,
+                  100,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "destination",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "shares",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "open_epoch",
+      "discriminator": [
+        75,
+        57,
+        218,
+        33,
+        173,
+        254,
+        207,
+        136
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "epoch",
+          "docs": [
+            "program can allocate data at this PDA, so non-empty data means it is already open."
+          ],
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "pause_deposits",
+      "discriminator": [
+        206,
+        186,
+        203,
+        153,
+        253,
+        61,
+        206,
+        122
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "propose_admin",
+      "discriminator": [
+        121,
+        214,
+        199,
+        212,
+        87,
+        39,
+        117,
+        234
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "new_admin",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "propose_lane_params",
+      "discriminator": [
+        223,
+        247,
+        91,
+        70,
+        228,
+        25,
+        82,
+        249
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lanes",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  101,
+                  115
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "LaneParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "propose_params",
+      "discriminator": [
+        94,
+        141,
+        220,
+        182,
+        171,
+        53,
+        52,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "Params"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "propose_unblock",
+      "discriminator": [
+        110,
+        197,
+        6,
+        236,
+        65,
+        126,
+        193,
+        168
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "blocked",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  99,
+                  107,
+                  101,
+                  100
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "address"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "address",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "receive_exit",
+      "discriminator": [
+        116,
+        172,
+        66,
+        55,
+        37,
+        62,
+        186,
+        147
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "docs": [
+            "Relayer: pays the `ExitBatch` rent and CCTP's used-nonce rent."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "exit_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  105,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "exit_custody",
+          "writable": true
+        },
+        {
+          "name": "exit_batch",
+          "docs": [
+            "Created here; its seeds come from the message's hook (`exit_message::batch_seed_*`)."
+          ],
+          "writable": true
+        },
+        {
+          "name": "cctp_message_transmitter",
+          "docs": [
+            "enabled attesters and threshold."
+          ],
+          "address": "W1k5ijkaSTo5iA5zChNpfzcy796fLhkBxfmJuR8W8HU"
+        },
+        {
+          "name": "cctp_used_nonce",
+          "writable": true
+        },
+        {
+          "name": "cctp_authority_pda",
+          "address": "DsAdX23SVpTPYhKP2ua1mx8gTPqLyzx7a43cyxYjS2up"
+        },
+        {
+          "name": "cctp_mt_event_authority",
+          "address": "2PcXTomVAbX5Es1NUZUkxwuCm8tvV4NmRk3fmQWFCWoV"
+        },
+        {
+          "name": "cctp_token_messenger",
+          "address": "AawthJCGRmggpfv9MMWV6Jmo9cue4gL9wUZgRBShg58W"
+        },
+        {
+          "name": "cctp_remote_token_messenger",
+          "docs": [
+            "the only accepted sender."
+          ],
+          "address": "3EzN2mcmdfSNGXRCAixSpTteK6ywdmFDZZWvkMnznFt9"
+        },
+        {
+          "name": "cctp_token_minter",
+          "address": "E1bQJ8eMMn3zmeSewW3HQ8zmJr7KR75JonbwAtWx2bux"
+        },
+        {
+          "name": "cctp_local_token",
+          "writable": true
+        },
+        {
+          "name": "cctp_token_pair"
+        },
+        {
+          "name": "cctp_fee_recipient_token_account",
+          "writable": true
+        },
+        {
+          "name": "cctp_custody",
+          "writable": true
+        },
+        {
+          "name": "cctp_tmm_event_authority",
+          "address": "6TCCnJ9R1m1RXFzyoH7GYH2J6NJDtZaUvfipPuLWxHNd"
+        },
+        {
+          "name": "cctp_message_transmitter_program",
+          "address": "CCTPV2Sm4AdWt5296sk4P66VBZ7bEhcARwFaaS9YPbeC"
+        },
+        {
+          "name": "cctp_token_messenger_minter_program",
+          "address": "CCTPV2vPZJS2u2BBsUoscuikbYjnpFmbFsvVuJdgUMQe"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "message",
+          "type": "bytes"
+        },
+        {
+          "name": "attestation",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "refund_deposit",
+      "discriminator": [
+        19,
+        19,
+        78,
+        50,
+        187,
+        10,
+        162,
+        229
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "docs": [
+            "The deposit's `authority`; receives the freed rent."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "docs": [
+            "Writable: the refund frees room under the deposit cap (`net_deposits`)."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "epoch",
+          "writable": true
+        },
+        {
+          "name": "destination",
+          "docs": [
+            "Any USDC account the depositor owns."
+          ],
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true
+        },
+        {
+          "name": "fee_vault",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        },
+        {
+          "name": "commitment",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "send_batch",
+      "discriminator": [
+        212,
+        9,
+        35,
+        132,
+        25,
+        80,
+        77,
+        213
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "docs": [
+            "Finisher; pays the CCTP MessageSent rent (~0.0042 SOL, reclaimable after 5 days) and",
+            "receives the finisher share of the batch's fees."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "epoch",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true
+        },
+        {
+          "name": "fee_vault",
+          "writable": true
+        },
+        {
+          "name": "finisher_usdc",
+          "docs": [
+            "The finisher's USDC account: the finisher share is paid here."
+          ],
+          "writable": true
+        },
+        {
+          "name": "treasury",
+          "docs": [
+            "cannot receive USDC (closed, frozen, another mint), its share goes to the finisher instead,",
+            "so a treasury problem never blocks a batch (`treasury_can_receive`)."
+          ],
+          "writable": true
+        },
+        {
+          "name": "usdc_mint",
+          "writable": true
+        },
+        {
+          "name": "message_sent_event_data",
+          "docs": [
+            "Fresh keypair; CCTP's MessageTransmitter creates the MessageSent account here."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "cctp_sender_authority"
+        },
+        {
+          "name": "cctp_denylist"
+        },
+        {
+          "name": "cctp_message_transmitter",
+          "writable": true
+        },
+        {
+          "name": "cctp_token_messenger"
+        },
+        {
+          "name": "cctp_remote_token_messenger"
+        },
+        {
+          "name": "cctp_token_minter"
+        },
+        {
+          "name": "cctp_local_token",
+          "writable": true
+        },
+        {
+          "name": "cctp_event_authority"
+        },
+        {
+          "name": "cctp_message_transmitter_program",
+          "address": "CCTPV2Sm4AdWt5296sk4P66VBZ7bEhcARwFaaS9YPbeC"
+        },
+        {
+          "name": "cctp_token_messenger_minter_program",
+          "address": "CCTPV2vPZJS2u2BBsUoscuikbYjnpFmbFsvVuJdgUMQe"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        },
+        {
+          "name": "epoch_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "send_express_batch",
+      "discriminator": [
+        112,
+        179,
+        41,
+        148,
+        83,
+        43,
+        176,
+        226
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "express",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true
+        },
+        {
+          "name": "fee_vault",
+          "writable": true
+        },
+        {
+          "name": "finisher_usdc",
+          "writable": true
+        },
+        {
+          "name": "treasury",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint",
+          "writable": true
+        },
+        {
+          "name": "message_sent_event_data",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "cctp_sender_authority"
+        },
+        {
+          "name": "cctp_denylist"
+        },
+        {
+          "name": "cctp_message_transmitter",
+          "writable": true
+        },
+        {
+          "name": "cctp_token_messenger"
+        },
+        {
+          "name": "cctp_remote_token_messenger"
+        },
+        {
+          "name": "cctp_token_minter"
+        },
+        {
+          "name": "cctp_local_token",
+          "writable": true
+        },
+        {
+          "name": "cctp_event_authority"
+        },
+        {
+          "name": "cctp_message_transmitter_program",
+          "address": "CCTPV2Sm4AdWt5296sk4P66VBZ7bEhcARwFaaS9YPbeC"
+        },
+        {
+          "name": "cctp_token_messenger_minter_program",
+          "address": "CCTPV2vPZJS2u2BBsUoscuikbYjnpFmbFsvVuJdgUMQe"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "denomination_index",
+          "type": "u8"
+        },
+        {
+          "name": "express_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "set_guardian",
+      "discriminator": [
+        147,
+        243,
+        50,
+        121,
+        154,
+        164,
+        50,
+        30
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "guardian",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "unblock",
+      "discriminator": [
+        194,
+        49,
+        173,
+        43,
+        246,
+        164,
+        14,
+        11
+      ],
+      "accounts": [
+        {
+          "name": "screening",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  114,
+                  101,
+                  101,
+                  110,
+                  105,
+                  110,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "blocked",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  99,
+                  107,
+                  101,
+                  100
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "address"
+              }
+            ]
+          }
+        },
+        {
+          "name": "rent_payer",
+          "writable": true,
+          "relations": [
+            "blocked"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "address",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "unpause_deposits",
+      "discriminator": [
+        15,
+        5,
+        224,
+        0,
+        74,
+        156,
+        151,
+        163
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "write_off_front",
+      "discriminator": [
+        154,
+        25,
+        20,
+        75,
+        199,
+        198,
+        233,
+        14
+      ],
+      "accounts": [
+        {
+          "name": "front",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  114,
+                  111,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "leaf"
+              }
+            ]
+          }
+        },
+        {
+          "name": "liquidity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  105,
+                  113,
+                  117,
+                  105,
+                  100,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "leaf",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "BlockedAddress",
+      "discriminator": [
+        83,
+        135,
+        150,
+        189,
+        205,
+        251,
+        26,
+        174
+      ]
+    },
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "Epoch",
+      "discriminator": [
+        93,
+        83,
+        120,
+        89,
+        151,
+        138,
+        152,
+        108
+      ]
+    },
+    {
+      "name": "ExitBatch",
+      "discriminator": [
+        17,
+        17,
+        84,
+        46,
+        189,
+        101,
+        178,
+        15
+      ]
+    },
+    {
+      "name": "ExpressEpoch",
+      "discriminator": [
+        184,
+        236,
+        58,
+        26,
+        167,
+        110,
+        125,
+        117
+      ]
+    },
+    {
+      "name": "Front",
+      "discriminator": [
+        146,
+        90,
+        67,
+        216,
+        213,
+        150,
+        165,
+        145
+      ]
+    },
+    {
+      "name": "Lanes",
+      "discriminator": [
+        55,
+        239,
+        91,
+        41,
+        56,
+        38,
+        184,
+        52
+      ]
+    },
+    {
+      "name": "Liquidity",
+      "discriminator": [
+        54,
+        252,
+        249,
+        226,
+        137,
+        172,
+        121,
+        58
+      ]
+    },
+    {
+      "name": "LpPosition",
+      "discriminator": [
+        105,
+        241,
+        37,
+        200,
+        224,
+        2,
+        252,
+        90
+      ]
+    },
+    {
+      "name": "Screening",
+      "discriminator": [
+        18,
+        162,
+        71,
+        155,
+        201,
+        67,
+        119,
+        112
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "AddressAdded",
+      "discriminator": [
+        244,
+        40,
+        67,
+        54,
+        10,
+        46,
+        183,
+        198
+      ]
+    },
+    {
+      "name": "AddressRemoved",
+      "discriminator": [
+        249,
+        169,
+        147,
+        107,
+        107,
+        47,
+        20,
+        35
+      ]
+    },
+    {
+      "name": "AdminAccepted",
+      "discriminator": [
+        174,
+        12,
+        76,
+        139,
+        158,
+        99,
+        110,
+        254
+      ]
+    },
+    {
+      "name": "AdminProposed",
+      "discriminator": [
+        129,
+        249,
+        226,
+        227,
+        199,
+        82,
+        110,
+        243
+      ]
+    },
+    {
+      "name": "BatchFeesPaid",
+      "discriminator": [
+        240,
+        149,
+        127,
+        179,
+        0,
+        9,
+        29,
+        151
+      ]
+    },
+    {
+      "name": "BatchSent",
+      "discriminator": [
+        116,
+        64,
+        207,
+        63,
+        56,
+        97,
+        15,
+        100
+      ]
+    },
+    {
+      "name": "DepositRefunded",
+      "discriminator": [
+        182,
+        155,
+        48,
+        105,
+        176,
+        178,
+        212,
+        215
+      ]
+    },
+    {
+      "name": "Deposited",
+      "discriminator": [
+        111,
+        141,
+        26,
+        45,
+        161,
+        35,
+        100,
+        57
+      ]
+    },
+    {
+      "name": "DepositsPaused",
+      "discriminator": [
+        148,
+        244,
+        198,
+        121,
+        18,
+        138,
+        222,
+        13
+      ]
+    },
+    {
+      "name": "DepositsUnpaused",
+      "discriminator": [
+        166,
+        2,
+        73,
+        157,
+        33,
+        169,
+        96,
+        69
+      ]
+    },
+    {
+      "name": "EpochClosed",
+      "discriminator": [
+        21,
+        4,
+        48,
+        56,
+        29,
+        169,
+        77,
+        42
+      ]
+    },
+    {
+      "name": "EpochOpened",
+      "discriminator": [
+        136,
+        166,
+        130,
+        170,
+        78,
+        145,
+        67,
+        78
+      ]
+    },
+    {
+      "name": "EpochRolledOver",
+      "discriminator": [
+        248,
+        151,
+        208,
+        212,
+        152,
+        58,
+        23,
+        231
+      ]
+    },
+    {
+      "name": "ExitClaimed",
+      "discriminator": [
+        251,
+        154,
+        235,
+        216,
+        216,
+        190,
+        30,
+        25
+      ]
+    },
+    {
+      "name": "ExitFronted",
+      "discriminator": [
+        53,
+        109,
+        245,
+        233,
+        100,
+        171,
+        168,
+        11
+      ]
+    },
+    {
+      "name": "ExitReceived",
+      "discriminator": [
+        157,
+        16,
+        2,
+        130,
+        180,
+        209,
+        236,
+        52
+      ]
+    },
+    {
+      "name": "ExpressDeposited",
+      "discriminator": [
+        131,
+        40,
+        35,
+        129,
+        131,
+        46,
+        10,
+        78
+      ]
+    },
+    {
+      "name": "FrontRepaid",
+      "discriminator": [
+        208,
+        54,
+        47,
+        29,
+        47,
+        195,
+        43,
+        139
+      ]
+    },
+    {
+      "name": "FrontWrittenOff",
+      "discriminator": [
+        249,
+        171,
+        136,
+        66,
+        46,
+        239,
+        32,
+        54
+      ]
+    },
+    {
+      "name": "GuardianSet",
+      "discriminator": [
+        159,
+        49,
+        155,
+        156,
+        176,
+        88,
+        29,
+        190
+      ]
+    },
+    {
+      "name": "LaneParamsApplied",
+      "discriminator": [
+        122,
+        223,
+        214,
+        117,
+        149,
+        85,
+        154,
+        204
+      ]
+    },
+    {
+      "name": "LaneParamsProposed",
+      "discriminator": [
+        221,
+        117,
+        182,
+        24,
+        54,
+        139,
+        105,
+        68
+      ]
+    },
+    {
+      "name": "LanesInitialized",
+      "discriminator": [
+        91,
+        135,
+        161,
+        21,
+        50,
+        139,
+        179,
+        194
+      ]
+    },
+    {
+      "name": "LiquidityDeposited",
+      "discriminator": [
+        218,
+        155,
+        74,
+        193,
+        59,
+        66,
+        94,
+        122
+      ]
+    },
+    {
+      "name": "LiquidityWithdrawn",
+      "discriminator": [
+        240,
+        120,
+        73,
+        139,
+        154,
+        31,
+        218,
+        68
+      ]
+    },
+    {
+      "name": "ParamsApplied",
+      "discriminator": [
+        79,
+        221,
+        60,
+        141,
+        244,
+        69,
+        47,
+        209
+      ]
+    },
+    {
+      "name": "ParamsProposed",
+      "discriminator": [
+        29,
+        64,
+        243,
+        241,
+        75,
+        135,
+        93,
+        142
+      ]
+    },
+    {
+      "name": "PoolFrontsDisabled",
+      "discriminator": [
+        33,
+        178,
+        230,
+        118,
+        165,
+        246,
+        199,
+        52
+      ]
+    },
+    {
+      "name": "ScreeningInitialized",
+      "discriminator": [
+        30,
+        118,
+        79,
+        10,
+        26,
+        53,
+        19,
+        74
+      ]
+    },
+    {
+      "name": "UnblockCancelled",
+      "discriminator": [
+        230,
+        88,
+        164,
+        117,
+        53,
+        126,
+        115,
+        213
+      ]
+    },
+    {
+      "name": "UnblockProposed",
+      "discriminator": [
+        176,
+        47,
+        221,
+        31,
+        136,
+        24,
+        113,
+        221
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "UnknownDenomination",
+      "msg": "Unknown denomination index"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidDenominations",
+      "msg": "Invalid denomination list"
+    },
+    {
+      "code": 6002,
+      "name": "ParamOutOfBounds",
+      "msg": "Parameter outside its hard bound"
+    },
+    {
+      "code": 6003,
+      "name": "CapLowered",
+      "msg": "The per-epoch cap and the deposit cap can only be raised"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidAdminLifetime",
+      "msg": "Admin lifetime outside bounds"
+    },
+    {
+      "code": 6005,
+      "name": "DepositsPaused",
+      "msg": "Deposits are paused"
+    },
+    {
+      "code": 6006,
+      "name": "EpochNotOpen",
+      "msg": "Epoch is not open"
+    },
+    {
+      "code": 6007,
+      "name": "NotCurrentEpoch",
+      "msg": "Epoch is not the current epoch for this denomination"
+    },
+    {
+      "code": 6008,
+      "name": "EpochFull",
+      "msg": "Epoch is full"
+    },
+    {
+      "code": 6009,
+      "name": "EpochNotEnded",
+      "msg": "Epoch has not ended"
+    },
+    {
+      "code": 6010,
+      "name": "EpochNotClosed",
+      "msg": "Epoch is not closed"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidLeaf",
+      "msg": "Leaf is not a canonical non-zero BN254 field element"
+    },
+    {
+      "code": 6012,
+      "name": "MerkleFailed",
+      "msg": "Merkle root computation failed"
+    },
+    {
+      "code": 6013,
+      "name": "NotAdmin",
+      "msg": "Signer is not the admin"
+    },
+    {
+      "code": 6014,
+      "name": "NotGuardian",
+      "msg": "Signer is not the guardian"
+    },
+    {
+      "code": 6015,
+      "name": "AdminExpired",
+      "msg": "Admin role has expired"
+    },
+    {
+      "code": 6016,
+      "name": "NoPendingParams",
+      "msg": "No pending parameter change"
+    },
+    {
+      "code": 6017,
+      "name": "TimelockActive",
+      "msg": "Timelock has not elapsed"
+    },
+    {
+      "code": 6018,
+      "name": "InvalidPortal",
+      "msg": "Portal must be a non-zero EVM address as bytes32"
+    },
+    {
+      "code": 6019,
+      "name": "Overflow",
+      "msg": "Arithmetic overflow"
+    },
+    {
+      "code": 6020,
+      "name": "DuplicateLeaf",
+      "msg": "This commitment is already in the epoch"
+    },
+    {
+      "code": 6021,
+      "name": "NotUpgradeAuthority",
+      "msg": "Only the program's upgrade authority can initialize"
+    },
+    {
+      "code": 6022,
+      "name": "NotRefundable",
+      "msg": "Deposit is not refundable: its epoch must be open, rolled over, and open for REFUND_DELAY_SLOTS"
+    },
+    {
+      "code": 6023,
+      "name": "LeafNotFound",
+      "msg": "No deposit of this commitment by this authority in the epoch"
+    },
+    {
+      "code": 6024,
+      "name": "PauseCooldown",
+      "msg": "The guardian must wait for the pause cooldown"
+    },
+    {
+      "code": 6025,
+      "name": "NoPendingAdmin",
+      "msg": "No admin transfer is pending"
+    },
+    {
+      "code": 6026,
+      "name": "NotPendingAdmin",
+      "msg": "Signer is not the pending admin"
+    },
+    {
+      "code": 6027,
+      "name": "DepositCapReached",
+      "msg": "This deposit would take the gateway past its deposit cap"
+    },
+    {
+      "code": 6028,
+      "name": "InvalidTreasury",
+      "msg": "The treasury must be a USDC token account other than the gateway's vaults"
+    },
+    {
+      "code": 6029,
+      "name": "ExitMessageMalformed",
+      "msg": "Exit message: wrong length, message or body version, or a malformed amount"
+    },
+    {
+      "code": 6030,
+      "name": "ExitWrongOrigin",
+      "msg": "Exit message is not a CCTP burn by Ethereum's TokenMessengerV2 to Solana's TokenMessengerMinterV2"
+    },
+    {
+      "code": 6031,
+      "name": "ExitWrongDestination",
+      "msg": "Exit message must name the exit authority as destination caller and exit custody as mint recipient"
+    },
+    {
+      "code": 6032,
+      "name": "ExitWrongPortal",
+      "msg": "Exit message was not sent by the configured portal"
+    },
+    {
+      "code": 6033,
+      "name": "ExitNotStandard",
+      "msg": "Exit transfer was not a finalized, fee-free (standard) transfer"
+    },
+    {
+      "code": 6034,
+      "name": "ExitBadHook",
+      "msg": "Exit hook: wrong length or version, unknown denomination, bad count or non-canonical root"
+    },
+    {
+      "code": 6035,
+      "name": "ExitAmountMismatch",
+      "msg": "Exit amount is not count x denomination, or exit custody did not receive exactly it"
+    },
+    {
+      "code": 6036,
+      "name": "InvalidExitProof",
+      "msg": "Exit leaf or Merkle path does not match the exit batch"
+    },
+    {
+      "code": 6037,
+      "name": "ExitAlreadyClaimed",
+      "msg": "This exit has already been paid"
+    },
+    {
+      "code": 6038,
+      "name": "ExitDestinationMismatch",
+      "msg": "The destination accounts do not match the destination in the exit"
+    },
+    {
+      "code": 6039,
+      "name": "LaneParamOutOfBounds",
+      "msg": "Lane parameter outside its hard bound"
+    },
+    {
+      "code": 6040,
+      "name": "ExpressFeeTooHigh",
+      "msg": "The crossing pool cannot pay the express fee and it is above what the user allowed"
+    },
+    {
+      "code": 6041,
+      "name": "ExpressNotClosed",
+      "msg": "Express epoch is not closed"
+    },
+    {
+      "code": 6042,
+      "name": "ExitBatchArrived",
+      "msg": "This exit batch has already arrived on Solana: claim it instead of fronting it"
+    },
+    {
+      "code": 6043,
+      "name": "FrontFeeTooHigh",
+      "msg": "Front fee above the cap"
+    },
+    {
+      "code": 6044,
+      "name": "FrontMismatch",
+      "msg": "The front record does not match the accounts given"
+    },
+    {
+      "code": 6045,
+      "name": "NotKeeper",
+      "msg": "Signer is not the pool's keeper, or pool fronts are off"
+    },
+    {
+      "code": 6046,
+      "name": "PoolInsufficient",
+      "msg": "The liquidity pool does not have enough idle funds"
+    },
+    {
+      "code": 6047,
+      "name": "PoolOutstandingCap",
+      "msg": "The pool's outstanding fronts would exceed their bound"
+    },
+    {
+      "code": 6048,
+      "name": "LpZero",
+      "msg": "Amount too small for one share, or shares worth nothing"
+    },
+    {
+      "code": 6049,
+      "name": "NotWriteOffable",
+      "msg": "Not a pool front, already written off, or not old enough"
+    },
+    {
+      "code": 6050,
+      "name": "InvalidPayee",
+      "msg": "The payee must be a USDC account other than the gateway's vaults"
+    },
+    {
+      "code": 6051,
+      "name": "DepositorBlocked",
+      "msg": "This address is on the gateway's screening list and cannot deposit"
+    },
+    {
+      "code": 6052,
+      "name": "InvalidScreeningEntry",
+      "msg": "Unknown list, or an address that cannot be listed"
+    },
+    {
+      "code": 6053,
+      "name": "NoUnblockPending",
+      "msg": "No removal of this address has been announced"
+    },
+    {
+      "code": 6054,
+      "name": "NotScreener",
+      "msg": "Only the admin or the guardian can do this before the sunset"
+    }
+  ],
+  "types": [
+    {
+      "name": "AddressAdded",
+      "docs": [
+        "An address can no longer deposit, effective at once."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "pubkey"
+          },
+          {
+            "name": "list",
+            "type": "u8"
+          },
+          {
+            "name": "reference",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "by",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AddressRemoved",
+      "docs": [
+        "The address can deposit again."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AdminAccepted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AdminProposed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pending_admin",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BatchFeesPaid",
+      "docs": [
+        "Emitted by `send_batch`: the batch's fees left the fee vault (ADR 0012). `finisher` and",
+        "`treasury` are the USDC token accounts paid. `treasury_skipped`: the treasury account could",
+        "not receive (closed, frozen, not USDC), so its share went to the finisher instead."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "finisher",
+            "type": "pubkey"
+          },
+          {
+            "name": "finisher_amount",
+            "type": "u64"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury_amount",
+            "type": "u64"
+          },
+          {
+            "name": "treasury_skipped",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BatchSent",
+      "docs": [
+        "Emitted by `send_batch`. `hook` is the exact 51-byte CCTP hook (ADR 0002)."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "leaf_count",
+            "type": "u16"
+          },
+          {
+            "name": "total",
+            "type": "u64"
+          },
+          {
+            "name": "root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "hook",
+            "type": {
+              "array": [
+                "u8",
+                51
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "BlockedAddress",
+      "docs": [
+        "PDA [\"blocked\", address]: `address` cannot be the `authority` of a deposit while this exists.",
+        "Added at once by the guardian or admin; removed by `unblock` once an announced removal is due."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "address",
+            "type": "pubkey"
+          },
+          {
+            "name": "list",
+            "docs": [
+              "LIST_SANCTIONS, LIST_STOLEN_FUNDS or LIST_OTHER."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "reference",
+            "docs": [
+              "Free-form pointer to the public source of the entry (scripts/screening: sha256 of the",
+              "source record, e.g. \"ofac-sdn:feature:94579\")."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "added_at",
+            "type": "i64"
+          },
+          {
+            "name": "added_by",
+            "type": "pubkey"
+          },
+          {
+            "name": "rent_payer",
+            "docs": [
+              "Paid the rent; gets it back when the entry is removed."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "unblock_eta",
+            "docs": [
+              "0 = no removal announced; otherwise `unblock` works from this time."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "guardian",
+            "type": "pubkey"
+          },
+          {
+            "name": "usdc_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "escrow",
+            "docs": [
+              "Principal of deposits that have not crossed. Only send_batch and refund_deposit move it."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_vault",
+            "docs": [
+              "Fees of deposits that have not crossed (ADR 0012). Only send_batch (pays them out) and",
+              "refund_deposit (gives them back) move it."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "exit_custody",
+            "docs": [
+              "Exit custody (ADR 0009): CCTP pays exit batches in here; only `claim_exit` pays out of it.",
+              "A token account at PDA [\"exit_custody\"] owned by the exit authority PDA [\"exit_authority\"],",
+              "which is also every exit message's destinationCaller."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "portal",
+            "docs": [
+              "Ethereum portal as a CCTP bytes32 (12 zero bytes + address): mint_recipient and",
+              "destination_caller of every batch. Fixed at initialization."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "denominations",
+            "docs": [
+              "USDC base units; 0 = unused slot. Fixed at initialization in Phase 0."
+            ],
+            "type": {
+              "array": [
+                "u64",
+                4
+              ]
+            }
+          },
+          {
+            "name": "current_epoch",
+            "docs": [
+              "Id of the open epoch per denomination."
+            ],
+            "type": {
+              "array": [
+                "u64",
+                4
+              ]
+            }
+          },
+          {
+            "name": "net_deposits",
+            "docs": [
+              "Principal that has entered and not been refunded: + denomination per deposit,",
+              "- denomination per refund. Bounded by `params.deposit_cap` (ADR 0012)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "Params"
+              }
+            }
+          },
+          {
+            "name": "pending",
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "PendingParams"
+                }
+              }
+            }
+          },
+          {
+            "name": "paused_deposits",
+            "type": "bool"
+          },
+          {
+            "name": "pause_expiry",
+            "type": "i64"
+          },
+          {
+            "name": "admin_expiry_ts",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "escrow_bump",
+            "type": "u8"
+          },
+          {
+            "name": "fee_vault_bump",
+            "type": "u8"
+          },
+          {
+            "name": "exit_authority_bump",
+            "type": "u8"
+          },
+          {
+            "name": "exit_custody_bump",
+            "type": "u8"
+          },
+          {
+            "name": "pause_cooldown_until",
+            "docs": [
+              "The guardian cannot pause again before this time (ADR 0010)."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "pending_admin",
+            "docs": [
+              "Two-step admin transfer: proposed by the admin, accepted by this key."
+            ],
+            "type": {
+              "option": "pubkey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "DepositRefunded",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "leaf",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee",
+            "docs": [
+              "The fee paid at deposit, returned with the denomination."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Deposited",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "leaf_index",
+            "type": "u16"
+          },
+          {
+            "name": "leaf",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "fee",
+            "docs": [
+              "Paid on top of the denomination into the fee vault (ADR 0012)."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DepositsPaused",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "expiry",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DepositsUnpaused",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    },
+    {
+      "name": "Epoch",
+      "docs": [
+        "One epoch of one denomination. Grows by one leaf per deposit (depositor pays the rent);",
+        "once closed it is the batch record: leaves stay readable so anyone can build Merkle paths.",
+        "`depositors[i]` signed the deposit of `leaves[i]`; only they can refund it (ADR 0010). It is",
+        "the transaction signer, which is public anyway."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination_index",
+            "type": "u8"
+          },
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "opened_slot",
+            "type": "u64"
+          },
+          {
+            "name": "end_slot",
+            "type": "u64"
+          },
+          {
+            "name": "rollovers",
+            "type": "u32"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "EpochStatus"
+              }
+            }
+          },
+          {
+            "name": "root",
+            "docs": [
+              "Batch root; meaningful once status != Open."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "fee_bps",
+            "docs": [
+              "`params.fee_bps` and `params.finisher_bps` when the epoch opened: every deposit, payout",
+              "and refund of this epoch uses them, so a fee change applies from the next epoch (ADR 0012)."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "finisher_bps",
+            "type": "u16"
+          },
+          {
+            "name": "leaves",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          },
+          {
+            "name": "depositors",
+            "type": {
+              "vec": "pubkey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochClosed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "leaf_count",
+            "type": "u16"
+          },
+          {
+            "name": "root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochOpened",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "end_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochRolledOver",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "leaf_count",
+            "type": "u16"
+          },
+          {
+            "name": "new_end_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Open"
+          },
+          {
+            "name": "Closed"
+          },
+          {
+            "name": "Sent"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExitBatch",
+      "docs": [
+        "One exit batch (ADR 0009): an Aztec exit epoch of one denomination that crossed through CCTP.",
+        "`receive_exit` creates it, with exactly `count x denomination` in exit custody; `claim_exit`",
+        "pays each leaf once. PDA [\"exit_batch\", denomination_index, exit_epoch_id (u64 LE)], so a",
+        "second message for the same exit epoch can never be received."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination_index",
+            "type": "u8"
+          },
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "exit_epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "root",
+            "docs": [
+              "Root of the exit tree: leaves `Poseidon(dest_hi, dest_lo, secret)`, batch node hash,",
+              "depth 8 (ADR 0004)."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "count",
+            "docs": [
+              "Exits in the batch, leaves 0..count."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "claimed_count",
+            "docs": [
+              "Exits paid so far."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "claimed",
+            "docs": [
+              "Bit `i % 8` of byte `i / 8` is set once leaf `i` is paid."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "cctp_nonce",
+            "docs": [
+              "The CCTP nonce of the message that carried the batch."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "received_slot",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExitClaimed",
+      "docs": [
+        "Emitted by `claim_exit`: leaf `leaf_index` of an exit batch paid one denomination to",
+        "`destination`'s USDC account (ADR 0009)."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "exit_epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "leaf_index",
+            "type": "u16"
+          },
+          {
+            "name": "destination",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExitFronted",
+      "docs": [
+        "Emitted by `front_exit` and `front_exit_from_pool` (ADR 0017)."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "leaf",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "exit_epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "destination",
+            "type": "pubkey"
+          },
+          {
+            "name": "advanced",
+            "type": "u64"
+          },
+          {
+            "name": "fee",
+            "type": "u64"
+          },
+          {
+            "name": "payee",
+            "type": "pubkey"
+          },
+          {
+            "name": "from_pool",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExitReceived",
+      "docs": [
+        "Emitted by `receive_exit`: an exit batch arrived through CCTP and its root is stored",
+        "(ADR 0009). `amount` = count x denomination, now in exit custody."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "exit_epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "count",
+            "type": "u16"
+          },
+          {
+            "name": "root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "cctp_nonce",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExpressDeposited",
+      "docs": [
+        "Emitted by `deposit_express` (ADR 0015). The express epoch is closed at once with this one",
+        "leaf; `express_id` has EXPRESS_EPOCH_BIT set. `paid_by_pool`: the crossing pool paid",
+        "`express_fee`, otherwise the user did. `send_express_batch` then emits the usual `BatchSent`",
+        "and `BatchFeesPaid` with this id (the bit is the express flag)."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "express_id",
+            "type": "u64"
+          },
+          {
+            "name": "leaf",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "fee",
+            "type": "u64"
+          },
+          {
+            "name": "express_fee",
+            "type": "u64"
+          },
+          {
+            "name": "paid_by_pool",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExpressEpoch",
+      "docs": [
+        "One express crossing (ADR 0015): a batch of one leaf, closed when it is made, sent by",
+        "`send_express_batch`. PDA [\"express\", denomination index, express id (u64 LE)]."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "denomination_index",
+            "type": "u8"
+          },
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "express_id",
+            "docs": [
+              "With EXPRESS_EPOCH_BIT set: the epoch id of the batch hook."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "opened_slot",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "docs": [
+              "Closed (ready to send) or Sent."
+            ],
+            "type": {
+              "defined": {
+                "name": "EpochStatus"
+              }
+            }
+          },
+          {
+            "name": "root",
+            "docs": [
+              "Root of the one-leaf tree (depth 8, ADR 0004)."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "leaf",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "depositor",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee",
+            "docs": [
+              "The ADR 0012 fee and its finisher share, at the params of the deposit."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "finisher_fee",
+            "type": "u64"
+          },
+          {
+            "name": "express_fee",
+            "docs": [
+              "The express fee, paid to the finisher at send (ADR 0015)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "paid_by_pool",
+            "docs": [
+              "The crossing pool paid `express_fee` (\"on us\"); otherwise the user did."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Front",
+      "docs": [
+        "One fronted exit (ADR 0017): someone paid the destination early and is repaid by `claim_exit`.",
+        "PDA [\"front\", leaf], so a leaf is fronted at most once and `claim_exit` always finds it."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "leaf",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "denomination_index",
+            "type": "u8"
+          },
+          {
+            "name": "denomination",
+            "type": "u64"
+          },
+          {
+            "name": "exit_epoch_id",
+            "docs": [
+              "The exit epoch the fronter named (informational: the leaf is what binds)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "fee",
+            "type": "u64"
+          },
+          {
+            "name": "advanced",
+            "docs": [
+              "What the destination received: denomination − fee."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "payee",
+            "docs": [
+              "USDC account `claim_exit` pays the whole denomination to."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "rent_payer",
+            "docs": [
+              "Gets the record's rent back when it closes."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "from_pool",
+            "docs": [
+              "Paid from the liquidity pool (payee = the pool's vault)."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "written_off",
+            "docs": [
+              "A pool front no longer counted in the share price (`write_off_front`)."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "fronted_at",
+            "type": "i64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "FrontRepaid",
+      "docs": [
+        "Emitted by `claim_exit` for a fronted leaf: the whole denomination went to the fronter."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "leaf",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "payee",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "from_pool",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FrontWrittenOff",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "leaf",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "advanced",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GuardianSet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "guardian",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitializeArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "guardian",
+            "type": "pubkey"
+          },
+          {
+            "name": "portal",
+            "docs": [
+              "Ethereum portal address, left-padded to 32 bytes (ADR 0002)."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "denominations",
+            "docs": [
+              "Strictly increasing, non-zero, 1..=MAX_DENOMINATIONS entries (USDC base units)."
+            ],
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "params",
+            "docs": [
+              "Includes the fee, its finisher share, the deposit cap and the treasury (ADR 0012)."
+            ],
+            "type": {
+              "defined": {
+                "name": "Params"
+              }
+            }
+          },
+          {
+            "name": "admin_lifetime_secs",
+            "docs": [
+              "Admin sunset, seconds from now (<= MAX_ADMIN_LIFETIME_SECS)."
+            ],
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LaneParams",
+      "docs": [
+        "The V2 parameters, each inside a hard bound (constants.rs). Changes are timelocked like",
+        "`Params`: 14 days when a fee rate changes (`front_fee_cap_bps`, `pool_fee_bps`), 7 days",
+        "otherwise. Turning pool fronts off (`disable_pool_fronts`) is immediate."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "express_fee",
+            "docs": [
+              "What an express crossing pays the finisher who sends it (USDC base units), from the",
+              "crossing pool while it holds at least this much, else from the user (ADR 0015)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "front_fee_cap_bps",
+            "docs": [
+              "The most any front may keep from an exit, in basis points of the denomination (ADR 0017)."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "pool_fee_bps",
+            "docs": [
+              "What a front paid from the liquidity pool keeps (<= front_fee_cap_bps). Fixed, so every",
+              "pool payout of a denomination is the same amount."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "pool_max_outstanding",
+            "docs": [
+              "Bound on what the pool has advanced and not been repaid (USDC base units)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "keeper",
+            "docs": [
+              "The key that signs pool fronts after checking the exit on Aztec. `Pubkey::default()` turns",
+              "pool fronts off."
+            ],
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LaneParamsApplied",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "LaneParams"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "LaneParamsProposed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "LaneParams"
+              }
+            }
+          },
+          {
+            "name": "eta",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Lanes",
+      "docs": [
+        "PDA [\"lanes\"]: created once by `init_lanes`. Its existence is what turns the V2 instructions on."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "crossing_pool_bump",
+            "type": "u8"
+          },
+          {
+            "name": "crossing_pool",
+            "docs": [
+              "USDC account at PDA [\"crossing_pool\"], owned by the config PDA (ADR 0015)."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "LaneParams"
+              }
+            }
+          },
+          {
+            "name": "pending",
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "PendingLaneParams"
+                }
+              }
+            }
+          },
+          {
+            "name": "express_next",
+            "docs": [
+              "Next express counter per denomination (the id is `EXPRESS_EPOCH_BIT | counter`)."
+            ],
+            "type": {
+              "array": [
+                "u64",
+                4
+              ]
+            }
+          },
+          {
+            "name": "pool_paid",
+            "docs": [
+              "Express fees the crossing pool has paid so far (public, for the app's \"on us\")."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "LanesInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "LaneParams"
+              }
+            }
+          },
+          {
+            "name": "crossing_pool",
+            "type": "pubkey"
+          },
+          {
+            "name": "liquidity_vault",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Liquidity",
+      "docs": [
+        "PDA [\"liquidity\"]: the pool that funds fronts (ADR 0017, amended). Accounting is internal, so",
+        "a token transfer straight to the vault changes nothing:",
+        "assets = liquid + outstanding; a share is worth (assets + V) / (shares + V)."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault_bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault",
+            "docs": [
+              "USDC account at PDA [\"liquidity_vault\"], owned by this PDA."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "total_shares",
+            "type": "u64"
+          },
+          {
+            "name": "liquid",
+            "docs": [
+              "Idle USDC in the vault that belongs to the pool: what can be fronted or withdrawn."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "outstanding",
+            "docs": [
+              "Advanced by pool fronts, not yet repaid nor written off."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "fees_earned",
+            "docs": [
+              "Front fees realized at repayment: the only source of share price growth."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "written_off",
+            "docs": [
+              "Advanced amounts written off, and what came back later for written-off fronts."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "recovered",
+            "type": "u64"
+          },
+          {
+            "name": "fronts",
+            "type": "u64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "LiquidityDeposited",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "shares",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LiquidityWithdrawn",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "shares",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LpPosition",
+      "docs": [
+        "PDA [\"lp\", owner]: one liquidity provider's shares."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "shares",
+            "type": "u64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Params",
+      "docs": [
+        "Tunable parameters, each inside a hard bound (constants.rs). Changes are timelocked."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "epoch_len_slots",
+            "type": "u64"
+          },
+          {
+            "name": "min_batch_size",
+            "type": "u16"
+          },
+          {
+            "name": "per_epoch_cap",
+            "docs": [
+              "Max deposits per (epoch, denomination); raise-only; <= MAX_BATCH_LEAVES."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "fee_bps",
+            "docs": [
+              "User fee on each note, paid on top of the denomination; <= FEE_CAP_BPS (ADR 0012).",
+              "Each epoch snapshots it when it opens."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "finisher_bps",
+            "docs": [
+              "The part of `fee_bps` paid to whoever sends the batch; <= fee_bps. The rest goes to",
+              "`treasury`. Snapshotted per epoch with `fee_bps`."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "deposit_cap",
+            "docs": [
+              "Bound on the principal that has entered and not been refunded (`Config::net_deposits`),",
+              "in USDC base units; raise-only."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "treasury",
+            "docs": [
+              "USDC token account that receives the rest of each batch's fees at `send_batch`."
+            ],
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ParamsApplied",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "Params"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ParamsProposed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "Params"
+              }
+            }
+          },
+          {
+            "name": "eta",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PendingLaneParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "LaneParams"
+              }
+            }
+          },
+          {
+            "name": "eta",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PendingParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "params",
+            "type": {
+              "defined": {
+                "name": "Params"
+              }
+            }
+          },
+          {
+            "name": "eta",
+            "docs": [
+              "Unix timestamp after which `apply_params` may execute."
+            ],
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PoolFrontsDisabled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "by",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Screening",
+      "docs": [
+        "PDA [\"screening\"]: created once by `init_screening`; counts the entries."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "blocked",
+            "docs": [
+              "Entries in force now (added and not removed)."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "added",
+            "type": "u64"
+          },
+          {
+            "name": "removed",
+            "type": "u64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScreeningInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    },
+    {
+      "name": "UnblockCancelled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "pubkey"
+          },
+          {
+            "name": "by",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UnblockProposed",
+      "docs": [
+        "The removal of an address is announced; anyone can carry it out from `eta`."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "pubkey"
+          },
+          {
+            "name": "eta",
+            "type": "i64"
+          },
+          {
+            "name": "by",
+            "type": "pubkey"
+          }
+        ]
+      }
+    }
+  ]
+}

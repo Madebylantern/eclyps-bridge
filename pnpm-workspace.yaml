@@ -1,0 +1,6 @@
+packages:
+  - sdk
+  - scripts
+  - finisher
+  - aztec
+  - app

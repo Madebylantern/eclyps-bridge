@@ -1,0 +1,52 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.keypair.json
+**/keys/
+id.json
+*-keypair.json
+
+# Rust / Anchor
+target/
+**/*.rs.bk
+.anchor/
+test-ledger/
+
+# Foundry
+contracts/**/out/
+contracts/**/cache/
+contracts/**/broadcast/
+
+# Node
+node_modules/
+dist/
+.next/
+*.tsbuildinfo
+
+# Noir / Aztec
+**/target/
+**/codegenCache.json
+
+# Python
+__pycache__/
+.venv/
+
+# OS / editor
+.DS_Store
+*.swp
+scripts/s2-aztec/artifacts/
+app/public/deployment.json
+scripts/aztec-wallet-data/
+**/aztec-wallet-data/
+scripts/e2e/.local/
+app/out/
+app/.next/
+app/next-env.d.ts
+# written by `next dev` (notes for coding agents)
+app/AGENTS.md
+docs/demo/*.webm
+scripts/testnet/.rehearsal/
+scripts/mainnet/.rehearsal/
+finisher-railway/
+railway.env

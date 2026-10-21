@@ -1,0 +1,51 @@
+[package]
+name = "eclyps-gateway"
+version = "0.1.0"
+description = "Eclyps Solana gateway (Phase 0 skeleton, S4)"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "eclyps_gateway"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+[dependencies]
+anchor-lang = { version = "=1.2.1", features = ["init-if-needed"] }
+anchor-spl = "=1.2.1"
+eclyps-merkle = { path = "../../circuits/merkle-rs" }
+
+[dev-dependencies]
+litesvm = "=0.18.0"
+proptest = "1.12"
+solana-keypair = "3.1"
+solana-message = "4.5"
+solana-signer = "3"
+solana-transaction = "4.1"
+spl-token-interface = "2"
+solana-program-pack = "3"
+solana-program-option = "3"
+solana-clock = "3.2"
+solana-account = "4"
+flate2 = "1"
+base64 = "0.22"
+serde_json = "1"
+# Exit tests (ADR 0009): test attesters sign CCTP messages (secp256k1, keccak), and receive_exit
+# goes in a v0 transaction with an address lookup table.
+k256 = { version = "0.13", features = ["ecdsa"] }
+sha3 = "0.10"
+solana-address-lookup-table-interface = { version = "3.2", features = ["bincode", "bytemuck"] }
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }

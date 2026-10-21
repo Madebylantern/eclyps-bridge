@@ -1,0 +1,6 @@
+# Host toolchain (tests, IDL build). SBF builds use platform-tools v1.57 via cargo build-sbf.
+# Pinned to 1.97.1 because litesvm 0.18 / agave 4.3 crates require it (ADR 0001).
+[toolchain]
+channel = "1.97.1"
+components = ["rustfmt", "clippy"]
+profile = "minimal"

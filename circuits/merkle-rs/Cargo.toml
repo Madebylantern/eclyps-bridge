@@ -1,0 +1,19 @@
+[package]
+name = "eclyps-merkle"
+version = "0.1.0"
+description = "Batch Merkle tree (Poseidon BN254, circom parameters) shared by the gateway program and tooling"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+# On target_os = "solana" this calls the sol_poseidon syscall; on the host it
+# falls back to light-poseidon with identical (circom) parameters.
+solana-poseidon = "=5.0.1"
+
+[dev-dependencies]
+serde_json = "1"
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }

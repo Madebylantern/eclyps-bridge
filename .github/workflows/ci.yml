@@ -1,0 +1,147 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+# Read-only token; nothing here writes to the repository (ADR 0010).
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Versions: docs/decisions/0001-toolchain.md. Downloaded binaries are checked against these
+# SHA-256 sums; actions are pinned to commits (the tag they were taken from is in the comment).
+env:
+  AGAVE_VERSION: v4.3.0
+  ANCHOR_VERSION: 1.2.1
+  FOUNDRY_VERSION: v1.8.5
+  NARGO_VERSION: v1.0.0-beta.25
+  AZTEC_VERSION: 6.0.0-rc.3
+  ANCHOR_SHA256: 5c899379cbd9a843fa4a730a37ba7ab61357571ffc535036a9afa08e5cd0b99b
+  FOUNDRY_SHA256: 6c66ffcc55fa4249197721baa3098bc208014ea1d8aa04b2ed50ac6bccffb226
+  NARGO_SHA256: bf3410ab94933a4aebd1f988b67ae974c6c227f9456ed0f1e4a3716bb8a30fe9
+
+jobs:
+  solana:
+    name: gateway + merkle (Rust, SBF, LiteSVM)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Rust toolchain (rust-toolchain.toml)
+        run: rustup show
+      - name: Format and lint
+        run: |
+          cargo fmt --all -- --check
+          cargo clippy --workspace --all-targets -- -D warnings
+      - name: Agave CLI
+        run: |
+          sh -c "$(curl -sSfL https://release.anza.xyz/${AGAVE_VERSION}/install)"
+          echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
+      - name: Anchor CLI
+        run: |
+          curl -sSfL -o /usr/local/bin/anchor \
+            "https://github.com/solana-foundation/anchor/releases/download/v${ANCHOR_VERSION}/anchor-${ANCHOR_VERSION}-x86_64-unknown-linux-gnu"
+          echo "${ANCHOR_SHA256}  /usr/local/bin/anchor" | sha256sum -c -
+          chmod +x /usr/local/bin/anchor
+      - name: Build SBF programs
+        run: |
+          anchor build   # warns about the program-id mismatch: the deploy keypair is not in git
+          cargo build-sbf --manifest-path circuits/syscall-probe/Cargo.toml
+      - name: Committed IDL matches the build
+        run: cmp target/idl/eclyps_gateway.json programs/gateway/idl/eclyps_gateway.json
+      - name: Tests
+        run: cargo test --workspace
+
+  ethereum:
+    name: portal (Foundry, incl. Sepolia fork tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+      - name: Foundry
+        run: |
+          curl -sSfL -o /tmp/foundry.tgz "https://github.com/foundry-rs/foundry/releases/download/${FOUNDRY_VERSION}/foundry_${FOUNDRY_VERSION}_linux_amd64.tar.gz"
+          echo "${FOUNDRY_SHA256}  /tmp/foundry.tgz" | sha256sum -c -
+          tar xzf /tmp/foundry.tgz -C /usr/local/bin forge
+      - name: Format
+        working-directory: contracts/portal
+        run: forge fmt --check
+      - name: Tests
+        working-directory: contracts/portal
+        env:
+          # A repository secret, when set, avoids depending on one public node; else the public one.
+          SEPOLIA_RPC_URL: ${{ secrets.SEPOLIA_RPC_URL || 'https://ethereum-sepolia-rpc.publicnode.com' }}
+        run: forge test
+
+  typescript:
+    name: sdk (vectors, gateway client, notes)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - run: pnpm --filter @eclyps/sdk typecheck
+      - run: pnpm --filter @eclyps/sdk test
+
+  noir:
+    name: merkle (Noir)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: nargo
+        run: |
+          curl -sSfL -o /tmp/nargo.tgz "https://github.com/noir-lang/noir/releases/download/${NARGO_VERSION}/nargo-x86_64-unknown-linux-gnu.tar.gz"
+          echo "${NARGO_SHA256}  /tmp/nargo.tgz" | sha256sum -c -
+          tar xzf /tmp/nargo.tgz -C /usr/local/bin nargo
+      - working-directory: circuits/merkle-nr
+        run: nargo test
+
+  aztec:
+    name: claim contract (Aztec.nr TXE) + scripts/app typecheck + app build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Aztec toolchain (native, no Docker)
+        run: |
+          curl -sSfL "https://install.aztec.network/${AZTEC_VERSION}" | NON_INTERACTIVE=1 bash
+          echo "$HOME/.aztec/current/bin" >> "$GITHUB_PATH"
+          echo "$HOME/.aztec/bin" >> "$GITHUB_PATH"
+      - name: Compile
+        working-directory: aztec
+        run: aztec compile
+      - name: TXE tests (S5 acceptance)
+        working-directory: aztec
+        run: aztec test
+      - run: pnpm install --frozen-lockfile
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - name: TS bindings for the compiled contracts
+        run: pnpm --filter @eclyps/aztec-contracts codegen
+      - name: Committed Aztec bindings match the build
+        run: git diff --exit-code --stat -- aztec/artifacts
+      - name: Typecheck scripts, finisher, app
+        run: |
+          pnpm --filter @eclyps/scripts typecheck
+          pnpm --filter @eclyps/finisher typecheck
+          pnpm --filter @eclyps/app typecheck
+      - name: Finisher unit tests (testnet planning)
+        run: pnpm --filter @eclyps/finisher test
+      - name: App unit tests (Totality schedule)
+        run: pnpm --filter @eclyps/app test
+      - name: App static build
+        run: pnpm --filter @eclyps/app build

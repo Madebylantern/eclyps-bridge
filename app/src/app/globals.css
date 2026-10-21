@@ -1,0 +1,1099 @@
+@import "tailwindcss";
+
+/*
+ * Eclyps app: black and white only, the same language as the landing page. An instrument, not a
+ * dashboard: one black field, large quiet numbers, and the route (Solana, bridge, Aztec) as the
+ * recurring figure. No boxes, no pills, no coloured states: hierarchy comes from size, weight and
+ * light. Actions are words that brighten when you reach for them. Tailwind's default palette is
+ * switched off, so every colour the app can use is one of these greys.
+ *   black / white      the field and the brightest light
+ *   text               body text
+ *   grey / dim         secondary and tertiary text, future steps
+ *   hair               1px separators between rows, never around anything
+ */
+@theme {
+  --color-*: initial;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-text: #e9e9e9;
+  --color-grey: #b5b5b5;
+  --color-dim: #8a8a8a;
+  --color-hair: #1a1a1a;
+
+  --font-display: var(--font-inter), "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-inter), "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  color-scheme: dark;
+  --track-wide: 0.42em;
+  --track-label: 0.2em;
+  --glow: 0 0 16px rgba(255, 255, 255, 0.5);
+}
+
+@layer base {
+  html {
+    background: var(--color-black);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-black);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 {
+    font-weight: 200;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: rgba(255, 255, 255, 0.22);
+    color: var(--color-white);
+  }
+  /* Focus is shown by light, never by a ring: anything focusable brightens and glows. */
+  :focus-visible {
+    outline: none;
+  }
+  :where(button, a, summary, [role="switch"], [role="radio"]):focus-visible {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Small uppercase tracked caption above a section or a figure. */
+  .label {
+    font-weight: 400;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: var(--track-label);
+    text-transform: uppercase;
+    color: var(--color-grey);
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 400;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Actions: words that light up. No background, no border, no rounded shape. */
+  .act {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--color-white);
+    font-weight: 400;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    text-align: left;
+    cursor: pointer;
+    transition: text-shadow 0.35s, color 0.35s;
+  }
+  .act .arr {
+    display: inline-block;
+    transition: transform 0.35s;
+  }
+  .act:hover:not(:disabled),
+  .act:focus-visible {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .act:hover:not(:disabled) .arr,
+  .act:focus-visible .arr {
+    transform: translateX(4px);
+  }
+  /* A line icon inside an action (the face scan on the passkey word) glows with the word. */
+  .act .face {
+    align-self: center;
+    flex: none;
+    transition: filter 0.35s;
+  }
+  .act:hover:not(:disabled) .face,
+  .act:focus-visible .face {
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.55));
+  }
+  /* The passkey word: the face above it, both centred on the word (the arrow hangs to its right
+     in a column as wide as the empty one on its left). */
+  .act.stack {
+    display: inline-grid;
+    grid-template-columns: 1.6em auto 1.6em;
+    align-items: baseline;
+    row-gap: 14px;
+    column-gap: 0;
+  }
+  .act.stack .face {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+  .act.stack > span:not(.arr) {
+    grid-column: 2;
+  }
+  .act.stack .arr {
+    grid-column: 3;
+    justify-self: start;
+    margin-left: 8px;
+  }
+  .act.quiet {
+    color: var(--color-grey);
+    font-weight: 300;
+  }
+  .act.small {
+    font-size: 0.875rem;
+  }
+  .act.big {
+    font-size: 1.125rem;
+  }
+  .act:disabled {
+    color: var(--color-dim);
+    cursor: not-allowed;
+    text-shadow: none;
+  }
+  .act[aria-pressed="true"] {
+    color: var(--color-white);
+  }
+  /* A step's "?" (ui.tsx HelpMark): one quiet word after the line, lit while its sentence shows. */
+  .help {
+    margin-left: 0.55em;
+    padding: 0 0.25em;
+    font-weight: 400;
+    color: var(--color-dim);
+    cursor: pointer;
+    transition: color 0.35s, text-shadow 0.35s;
+  }
+  .help:hover,
+  .help:focus-visible,
+  .help[aria-expanded="true"] {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  /* Its sentence: plain text beneath the line, no box. */
+  .help-text {
+    max-width: 34rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-grey);
+    text-wrap: balance;
+    animation: tunnel-in 0.35s ease both;
+  }
+  .acts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 32px;
+    row-gap: 12px;
+  }
+
+  /* Header navigation: plain words, dim until reached or current. */
+  .nav-word {
+    color: var(--color-dim);
+    font-size: 0.875rem;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .nav-word:hover,
+  .nav-word:focus-visible {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .nav-word[aria-current="page"] {
+    color: var(--color-white);
+  }
+  /* Quiet header words (network, wallets, lock): text that glows on hover. */
+  .who-word {
+    color: var(--color-dim);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  button.who-word:hover,
+  button.who-word:focus-visible {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .who-word[data-lit="true"] {
+    color: var(--color-grey);
+  }
+  .who-word[data-lit="alert"] {
+    color: var(--color-white);
+  }
+  /* The mark in the header: back to the landing, glowing when reached. */
+  .brand-word {
+    transition: filter 0.3s;
+  }
+  .brand-word:hover,
+  .brand-word:focus-visible {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+  }
+
+  /* The Menu sheet (src/components/menu.tsx): big thin words for the places, quiet rows below. */
+  .menu-sheet {
+    animation: menu-in 0.25s ease both;
+  }
+  .menu-word {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+    font-weight: 200;
+    line-height: 1.15;
+    color: var(--color-grey);
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .menu-word:hover,
+  .menu-word:focus-visible {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .menu-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .menu-facts > div {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    align-items: baseline;
+  }
+  .menu-facts dt {
+    font-size: 0.625rem;
+    letter-spacing: var(--track-label);
+    text-transform: uppercase;
+    color: var(--color-dim);
+  }
+  .menu-facts dd {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 22px;
+    row-gap: 4px;
+  }
+  .menu-facts .who {
+    font-size: 0.9375rem;
+    color: var(--color-grey);
+    text-align: left;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .menu-facts .who:hover,
+  .menu-facts .who:focus-visible {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .menu-facts .who[data-lit="alert"] {
+    color: var(--color-white);
+  }
+  @media (max-width: 600px) {
+    .menu-word {
+      font-weight: 300;
+    }
+  }
+
+  /* Huge thin numbers. */
+  .amount {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: clamp(3.4rem, 2rem + 6.5vw, 7.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+  }
+  .amount .mask {
+    font-size: 0.3em;
+    letter-spacing: 0.45em;
+    vertical-align: 0.55em;
+    margin-left: 0.25em;
+    color: var(--color-grey);
+  }
+
+  /* Status dots: done (white), now (white with a still glow), next (hollow). Never animated. */
+  .g {
+    display: inline-block;
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    transform: translateY(-1px);
+  }
+  .g.done {
+    background: var(--color-white);
+  }
+  .g.now {
+    background: var(--color-white);
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.45);
+  }
+  .g.next {
+    box-shadow: inset 0 0 0 1px var(--color-dim);
+  }
+
+  /* Lists separated by hairlines between rows, never boxed. */
+  .rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rows > li + li {
+    border-top: 1px solid var(--color-hair);
+  }
+
+  /* The control panel (/app/panel/): a row per wallet; a hairline gauge fills toward a comfortable
+     balance and goes dim when the wallet needs topping up. */
+  .panel-row {
+    display: grid;
+    gap: 6px;
+    padding: 14px 0;
+  }
+  .gauge {
+    display: block;
+    width: 96px;
+    height: 1px;
+    background: var(--color-hair);
+  }
+  .gauge i {
+    display: block;
+    height: 1px;
+    background: var(--color-white);
+  }
+  .gauge.low i {
+    background: var(--color-dim);
+  }
+
+  /* Inputs: plain text on black; a hairline appears under the field while it has focus. */
+  .field {
+    width: 100%;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    padding: 6px 0;
+    color: var(--color-white);
+    caret-color: var(--color-white);
+    font-weight: 300;
+    font-size: 1.125rem;
+    transition: border-color 0.3s;
+  }
+  .field::placeholder {
+    color: var(--color-dim);
+  }
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--color-dim);
+  }
+
+  /* Giant amount input (Move in). */
+  .amount-in {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .amount-in span,
+  .amount-in input {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: clamp(3rem, 2rem + 5vw, 6.5rem);
+    line-height: 1.05;
+  }
+  .amount-in span {
+    color: var(--color-dim);
+  }
+  .amount-in input {
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    caret-color: var(--color-white);
+    transition: border-color 0.3s;
+  }
+  .amount-in input:focus {
+    outline: none;
+    border-bottom-color: var(--color-hair);
+  }
+
+  /* The amount's unit beside the figure (bridge screen). */
+  .amount-in .unit {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1;
+    color: var(--color-grey);
+  }
+
+  /* Bridge screen: a caption column beside each row; stacked on a phone. */
+  .bridge-rows {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    align-items: start;
+    gap: 36px 24px;
+  }
+  .bridge-rows > .label {
+    padding-top: 0.45rem;
+  }
+  .bridge-rows > .label:first-child {
+    padding-top: clamp(1.1rem, 0.6rem + 1.6vw, 2.4rem);
+  }
+  @media (max-width: 559px) {
+    .bridge-rows {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+    .bridge-rows > .label {
+      padding-top: 26px;
+    }
+    .bridge-rows > .label:first-child {
+      padding-top: 0;
+    }
+  }
+
+  /* A destination: a word, white when chosen, glowing when reached. */
+  .dest {
+    text-align: left;
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: var(--color-grey);
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .dest.on {
+    color: var(--color-white);
+  }
+  .dest:hover,
+  .dest:focus-visible {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+
+  /* Facts: tiny captions over plain values. */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    gap: 8px 40px;
+    margin: 0;
+  }
+  .facts dt {
+    font-size: 0.625rem;
+    letter-spacing: var(--track-label);
+    text-transform: uppercase;
+    color: var(--color-dim);
+  }
+  .facts dd {
+    margin: 0;
+    color: var(--color-text);
+  }
+  @media (max-width: 640px) {
+    .facts {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+
+  /* The route figure: Solana, bridge, Aztec, with notes as points of light. */
+  .route {
+    position: relative;
+    height: 92px;
+  }
+  .route canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .route .st {
+    position: absolute;
+    top: 58px;
+    transform: translateX(-50%);
+    font-size: 0.625rem;
+    letter-spacing: var(--track-label);
+    text-transform: uppercase;
+    color: var(--color-dim);
+    white-space: nowrap;
+  }
+
+  /* Notes list. */
+  .note {
+    width: 100%;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 7px 5.5rem minmax(0, 1fr);
+    gap: 16px;
+    align-items: baseline;
+    padding: 16px 0;
+    color: var(--color-grey);
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .note:hover,
+  .note:focus-visible {
+    color: var(--color-white);
+    text-shadow: none;
+  }
+  .note .v {
+    font-weight: 300;
+    font-size: 1.0625rem;
+    color: var(--color-text);
+    transition: text-shadow 0.3s, color 0.3s;
+  }
+  .note:hover .v,
+  .note:focus-visible .v {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .note[aria-current="true"] {
+    color: var(--color-white);
+  }
+  .note[aria-current="true"] .v {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  @media (max-width: 639px) {
+    .note {
+      grid-template-columns: 7px 4.25rem minmax(0, 1fr);
+      gap: 12px;
+    }
+    .note .v {
+      font-size: 1rem;
+    }
+    .note .s {
+      font-size: 0.875rem;
+    }
+  }
+
+  /* The journey of one note: a vertical hairline with a dot per stage. */
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  .steps::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 14px;
+    bottom: 14px;
+    width: 1px;
+    background: var(--color-hair);
+  }
+  .steps > li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7px minmax(0, 1fr) auto;
+    gap: 18px;
+    padding: 10px 0 14px;
+    align-items: baseline;
+  }
+  .steps .g {
+    position: relative;
+    z-index: 1;
+  }
+  .steps .t {
+    color: var(--color-white);
+    font-weight: 400;
+  }
+  .steps > li.future .t {
+    color: var(--color-dim);
+    font-weight: 300;
+  }
+  .steps .w {
+    color: var(--color-grey);
+    font-size: 0.875rem;
+  }
+  .steps > li.future .w {
+    color: var(--color-dim);
+  }
+  .steps time {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-dim);
+    white-space: nowrap;
+  }
+
+  /* Privacy plans: words, the pressed one lit. */
+  .plan {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--color-dim);
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .plan b {
+    font-weight: 400;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .plan > span {
+    font-size: 0.875rem;
+    text-shadow: none;
+  }
+  .plan:hover,
+  .plan:focus-visible {
+    color: var(--color-grey);
+    text-shadow: none;
+  }
+  .plan:hover b,
+  .plan:focus-visible b {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .plan[aria-pressed="true"] {
+    color: var(--color-grey);
+  }
+  .plan[aria-pressed="true"] b {
+    color: var(--color-white);
+  }
+  /* The pressed plan's dot sits just left of its word, so every title aligns with its line. */
+  .plan b {
+    position: relative;
+  }
+  .plan .g {
+    position: absolute;
+    left: -17px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .plan[aria-pressed="true"] .g {
+    opacity: 1;
+  }
+
+  /* Recovery phrase: 24 words in a mono grid. */
+  .words {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px 24px;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--color-text);
+    transition: filter 0.5s;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .words.veiled {
+    filter: blur(6px);
+    user-select: none;
+    pointer-events: none;
+  }
+  .words em {
+    font-style: normal;
+    color: var(--color-dim);
+    margin-right: 10px;
+    display: inline-block;
+    width: 1.4em;
+    text-align: right;
+  }
+  @media (max-width: 560px) {
+    .words {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* Crowd dot disk (Privacy). */
+  .crowd canvas {
+    width: min(100%, 280px);
+    aspect-ratio: 1;
+    display: block;
+  }
+
+  /*
+   * The bridge's tunnel (src/components/tunnel.tsx): the canvases sit behind everything, the words
+   * are placed over them from the tunnel's geometry. Words over grain carry a black shade, so they
+   * read on any part of the picture; nothing here is boxed.
+   */
+  .tunnel-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: var(--color-black);
+    --fade: linear-gradient(to bottom, rgba(0, 0, 0, 0.32) 0, rgba(0, 0, 0, 0.32) max(0px, calc(var(--tunnel-top, 0px) - 28px)), #000 calc(var(--tunnel-top, 0px) + 16px));
+    -webkit-mask-image: var(--fade);
+    mask-image: var(--fade);
+  }
+  .tunnel-canvas canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+  }
+  .tunnel-canvas[data-gl="false"] canvas:first-child {
+    display: none;
+  }
+  .tunnel {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 300px;
+    --shade: 0 0 6px #000, 0 0 16px #000, 0 0 30px rgba(0, 0, 0, 0.9);
+  }
+  .tunnel-ov {
+    position: fixed;
+    z-index: 2;
+    transition: opacity 0.5s, visibility 0.5s;
+  }
+  .tunnel-ov.off {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  /* The amount, large and thin, inside the black disk; the whole disk focuses it. */
+  .tunnel-amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    cursor: text;
+  }
+  .tunnel-amount .amt {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .tunnel-amount .cur {
+    align-self: flex-start;
+    margin-top: 0.2em;
+    margin-right: 0.14em;
+    font-size: 0.36em;
+    letter-spacing: 0;
+    color: var(--color-grey);
+  }
+  .tunnel-amount input {
+    all: unset;
+    display: block;
+    min-width: 0.6em;
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    text-align: left;
+    caret-color: transparent;
+    font-variant-numeric: tabular-nums;
+  }
+  .tunnel-amount input::placeholder {
+    color: var(--color-dim);
+    opacity: 1;
+  }
+  /* A still caret: shown while the amount has focus, never blinking. */
+  .tunnel-amount .caret {
+    width: 1px;
+    height: 0.74em;
+    margin-left: 0.08em;
+    background: var(--color-grey);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tunnel-amount:focus-within .caret {
+    opacity: 0.7;
+  }
+  .tunnel-amount .mirror {
+    position: absolute;
+    visibility: hidden;
+    white-space: pre;
+    font: inherit;
+    letter-spacing: inherit;
+  }
+  .tunnel-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-shadow: var(--shade);
+  }
+  .tunnel-lines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    animation: tunnel-in 0.45s ease both;
+  }
+  .tunnel-lines .l1 {
+    font-size: 1.0625rem;
+    color: var(--color-text);
+    text-wrap: balance;
+  }
+  .tunnel-lines .l2 {
+    font-size: 0.875rem;
+    color: var(--color-grey);
+    text-wrap: balance;
+  }
+  .tunnel-lines .sep {
+    margin: 0 0.35em;
+    color: var(--color-dim);
+  }
+  .tunnel-lines .err {
+    color: var(--color-white);
+  }
+  /* A failed action's reason: one quiet word, and the reason under it once asked for. */
+  .tunnel-lines .why {
+    margin-left: 0.9em;
+    color: var(--color-dim);
+    transition: color 0.35s, text-shadow 0.35s;
+  }
+  .tunnel-lines .why:hover,
+  .tunnel-lines .why:focus-visible,
+  .tunnel-lines .why[aria-expanded="true"] {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .tunnel-lines .why-text {
+    max-width: 34rem;
+    margin-top: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-grey);
+    overflow-wrap: anywhere;
+  }
+  .tunnel-block .dim {
+    margin-left: 0.1em;
+    font-weight: 300;
+    color: var(--color-grey);
+  }
+  .tunnel-dest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 16px;
+    font-size: 0.9375rem;
+  }
+  .tunnel-dest .to {
+    color: var(--color-dim);
+  }
+  .tunnel-dest .opt {
+    color: var(--color-dim);
+    transition: color 0.35s, text-shadow 0.35s;
+  }
+  .tunnel-dest .opt[aria-checked="true"],
+  .tunnel-dest .opt.on {
+    color: var(--color-white);
+  }
+  .tunnel-dest button.opt:hover,
+  .tunnel-dest button.opt:focus-visible {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  /* The destinations side by side, each a word and its time; they stack when the screen is narrow. */
+  .tunnel-dest .routes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 1.4em;
+    row-gap: 6px;
+  }
+  .tunnel-dest .choice .opt {
+    white-space: nowrap;
+  }
+  .tunnel-dest .choice .opt .dim {
+    font-size: 0.8125rem;
+    color: var(--color-dim);
+    transition: color 0.35s;
+  }
+  .tunnel-dest .means {
+    max-width: 26rem;
+    margin-top: -2px;
+    font-size: 0.8125rem;
+    color: var(--color-dim);
+    text-wrap: balance;
+  }
+  .tunnel-dest .choice .opt[aria-checked="true"] .dim,
+  .tunnel-dest .choice .opt.on .dim {
+    color: var(--color-grey);
+  }
+  .tunnel-dest .dotsep {
+    margin: 0 0.3em;
+    color: var(--color-dim);
+  }
+  .tunnel-dest .eth {
+    width: min(25rem, 100%);
+    padding: 6px 0;
+    border: 0;
+    border-bottom: 1px solid var(--color-hair);
+    border-radius: 0;
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-white);
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .tunnel-dest .eth::placeholder {
+    color: var(--color-dim);
+  }
+  .tunnel-dest .eth:focus {
+    outline: none;
+    border-bottom-color: var(--color-dim);
+  }
+  .tunnel-acts {
+    justify-content: center;
+    column-gap: 28px;
+    margin-top: 16px;
+  }
+  .tunnel-acts .act.quiet:not(.small) {
+    font-size: 1rem;
+  }
+  .tunnel-block .hint {
+    font-size: 0.9375rem;
+    color: var(--color-dim);
+  }
+  .tunnel-block .note {
+    margin-top: 10px;
+    font-size: 0.8125rem;
+    color: var(--color-grey);
+  }
+  /* The far ring can be tapped to claim; its light is the only feedback. */
+  .tunnel-ring {
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .tunnel-balance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    text-shadow: var(--shade);
+  }
+  .tunnel-balance b {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: var(--bfs, 40px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+  }
+  .tunnel-balance span {
+    font-size: 0.625rem;
+    letter-spacing: var(--track-label);
+    text-transform: uppercase;
+    color: var(--color-grey);
+  }
+  /* The quiet words of a stage (More options, Back, New crossing), after its actions. */
+  .tunnel-end {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1.4em;
+  }
+  /* Quieter than the stage's action: smaller and dim until reached. */
+  .tunnel-end .act {
+    font-size: 0.8125rem;
+    color: var(--color-dim);
+  }
+  .tunnel-end .act:hover:not(:disabled),
+  .tunnel-end .act:focus-visible {
+    color: var(--color-white);
+  }
+  /* While the tunnel is on screen, the header, notices and footer read over its grain. */
+  html[data-tunnel] header,
+  html[data-tunnel] footer,
+  html[data-tunnel] main > * {
+    text-shadow: 0 0 6px #000, 0 0 16px #000;
+  }
+
+  /* Technical details and other disclosures: a quiet word with a turning arrow. */
+  .disclosure > summary {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--color-grey);
+    font-size: 0.875rem;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .disclosure > summary:hover {
+    color: var(--color-white);
+    text-shadow: var(--glow);
+  }
+  .disclosure > summary .arr {
+    display: inline-block;
+    transition: transform 0.35s;
+  }
+  .disclosure[open] > summary .arr {
+    transform: rotate(90deg);
+  }
+
+  /* Phones in daylight: weight 200 turns large thin figures into hairlines on a small bright
+     screen, so they step up to 300 there. */
+  @media (max-width: 600px) {
+    .amount,
+    .amount-in span,
+    .amount-in input,
+    .tunnel-amount,
+    .tunnel-balance b {
+      font-weight: 300;
+    }
+  }
+}
+
+@layer base {
+  @media (max-width: 600px) {
+    h1, h2, h3 {
+      font-weight: 300;
+    }
+  }
+}
+
+@layer utilities {
+  @media (max-width: 600px) {
+    .font-extralight {
+      font-weight: 300;
+    }
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes tunnel-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* The app comes in from black (after the landing's fade out). */
+@keyframes app-appear { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  body { animation: app-appear 0.9s ease-out both; }
+}
