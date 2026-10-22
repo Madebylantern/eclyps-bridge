@@ -6,6 +6,20 @@ import {BatchHook} from "../src/libraries/BatchHook.sol";
 
 /// @notice Builds CCTP V2 burn messages byte-for-byte as Iris returns them.
 abstract contract CctpTestBase is Test {
+    /// How far behind Sepolia's head the fork tests start. Forking at "latest" through a load-balanced
+    /// public RPC can fail: one backend names the newest block, the next has not seen it yet.
+    uint256 internal constant FORK_LAG = 8;
+
+    /// Forks Sepolia `FORK_LAG` blocks behind its head.
+    function forkSepolia(string memory rpc) internal {
+        bytes memory head = vm.rpc(rpc, "eth_blockNumber", "[]");
+        uint256 n;
+        for (uint256 i = 0; i < head.length; i++) {
+            n = (n << 8) | uint8(head[i]);
+        }
+        vm.createSelectFork(rpc, n - FORK_LAG);
+    }
+
     // Live values (ADR 0002): Solana devnet / Ethereum Sepolia.
     bytes32 internal constant SOLANA_TMM =
         0xa65fc81d0fefa8860cb3b83f089b0224be8a6687b7ae49f594c0b9b4d7e93893;

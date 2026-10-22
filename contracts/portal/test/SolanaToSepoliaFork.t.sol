@@ -23,7 +23,7 @@ contract SolanaToSepoliaForkTest is CctpTestBase {
     function setUp() public {
         string memory rpc = vm.envOr("SEPOLIA_RPC_URL", string(""));
         if (bytes(rpc).length == 0) vm.skip(true);
-        vm.createSelectFork(rpc);
+        forkSepolia(rpc);
         IAttestable mt = IAttestable(SEPOLIA_MESSAGE_TRANSMITTER);
         vm.startPrank(mt.attesterManager());
         mt.enableAttester(vm.addr(attesterKey));

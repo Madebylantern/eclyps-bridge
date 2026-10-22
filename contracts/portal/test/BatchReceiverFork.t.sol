@@ -29,7 +29,7 @@ contract BatchReceiverForkTest is CctpTestBase {
     function setUp() public {
         string memory rpc = vm.envOr("SEPOLIA_RPC_URL", string(""));
         if (bytes(rpc).length == 0) vm.skip(true);
-        vm.createSelectFork(rpc);
+        forkSepolia(rpc);
 
         receiver = new BatchReceiver(
             IReceiverV2(SEPOLIA_MESSAGE_TRANSMITTER),
